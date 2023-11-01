@@ -1,5 +1,0 @@
-{
-  "hello": "Hello, {{ username }}!",
-  "subscribed": "You are subscribed to updates.",
-  "notSubscribed": "You are not subscribed to updates."
-}
