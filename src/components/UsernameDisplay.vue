@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p v-if="username" class="greeting">Hello, {{ username }}!</p>
+    <p v-if="username">Hello, {{ username }}!</p>
+    <p v-if="isSubscribed">You are subscribed to updates.</p>
+    <p v-else>You are not subscribed to updates.</p>
   </div>
 </template>
 
@@ -8,16 +10,16 @@
 export default {
   props: {
     username: String,
+    isSubscribed: Boolean, // チェックボックスの状態を受け取る
   },
 }
 </script>
 
 <style scoped>
-/* Scoped style that only applies to this component */
-.greeting {
-  font-size: 20px;
-  font-weight: bold;
-  color: #007BFF;
-  margin-top: 20px;
-}
+  .greeting {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007BFF;
+    margin-top: 20px;
+  }
 </style>
