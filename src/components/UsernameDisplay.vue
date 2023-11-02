@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p v-if="username">Hello, {{ username }}!</p>
-    <p v-if="isSubscribed">You are subscribed to updates.</p>
-    <p v-else>You are not subscribed to updates.</p>
+    <p v-if="username">こんにちは, {{ username }}!</p>
+    <p v-if="isSubscribed">更新情報を購読しています。</p>
+    <p v-else>更新情報を購読していません。</p>
   </div>
 </template>
 
