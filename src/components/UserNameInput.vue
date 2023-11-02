@@ -1,7 +1,13 @@
 <template>
   <div>
-    <label for="username">Enter your username:</label>
-    <input type="text" id="username" v-model="inputUsername" />
+    <label for="username">Enter your username:</label><br>
+    <!-- v-modelは双方向バインディング -->
+    <!-- フォームで書き換えたらロジックに書いてある変数も書き換わる -->
+    <!-- 逆にロジックに文字列をいれたらフォームも書き変わる -->
+    <!-- v-model便利だけど、見づらい -->
+    <input type="text" id="username" placeholder="フォーム1" @input="inputUsername = $event.target.value" /><br>
+    <input type="text" id="username" placeholder="フォーム2" :value="inputUsername" /><br>
+    <p>{{inputUsername}}</p><br>
     <button @click="submitUsername">Submit</button>
     <label>
       <input type="checkbox" v-model="isSubscribed" /> Subscribe to updates
@@ -20,6 +26,7 @@ export default {
   methods: {
     submitUsername() {
       // チェックボックスの状態も親コンポーネントに送信
+      // this.$emit('<イベント名>',<データ>);
       this.$emit('username-submitted', this.inputUsername, this.isSubscribed);
     },
   },

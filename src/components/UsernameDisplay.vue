@@ -1,6 +1,7 @@
 <template>
   <div>
     <p v-if="username">こんにちは, {{ username }}!</p>
+    <!-- isSubscribedは監視する変化があったら教えてくれる -->
     <p v-if="isSubscribed">更新情報を購読しています。</p>
     <p v-else>更新情報を購読していません。</p>
   </div>

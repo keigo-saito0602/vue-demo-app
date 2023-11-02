@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- @はv-onの省略形 v-onはイベント -->
     <UserNameInput @username-submitted="onUsernameSubmitted" />
     <UsernameDisplay :username="username" :is-subscribed="isSubscribed" />
   </div>
