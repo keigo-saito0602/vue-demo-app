@@ -1,5 +1,0 @@
-{
-  "hello": "こんにちは、{{ username }}さん！",
-  "subscribed": "アップデートを購読中です。",
-  "notSubscribed": "アップデートは購読されていません。"
-}
