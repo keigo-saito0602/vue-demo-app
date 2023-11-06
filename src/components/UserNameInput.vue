@@ -1,10 +1,10 @@
 <template>
   <div>
     <label for="username">Enter your username:</label>
-    <input type="text" id="username" v-model="inputUsername" />
-    <button @click="submitUsername">Submit</button>
+    <input class="username-form" type="text" id="username" v-model="inputUsername" /><br>
+    <button @click="submitUsername">Submit</button><br>
     <label>
-      <input type="checkbox" v-model="isSubscribed" /> Subscribe to updates
+      <input type="checkbox" v-model="isSubscribed" /> Subscribe to updates<br>
     </label>
   </div>
 </template>
@@ -38,13 +38,33 @@ export default {
 
   button {
     background-color: #007BFF;
-    color: white;
-    padding: 5px 10px;
+    color: black;
+    margin: 10px 5px;
+    padding: 5px 30px;
     border: none;
     cursor: pointer;
+    /*影の基点とするためrelativeを指定*/
+    position: relative;
+    /*ボタンの形状*/
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+    border-radius: 25px;
+    border: solid 1px #333;
+    outline: none;
+    /*アニメーションの指定*/
+    transition: all 0.3s ease;
   }
 
   button:hover {
     background-color: #0056b3;
+    color:white;
+    border-color:transparent;
+  }
+
+
+  username-form {
+    margin: 10px 10px;
   }
 </style>
