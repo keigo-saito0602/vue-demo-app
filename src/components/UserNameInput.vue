@@ -1,10 +1,10 @@
 <template>
   <div>
-    <label for="username">Enter your username:</label>
+    <label for="username">{{$t("app.title")}}</label>
     <input class="username-form" type="text" id="username" v-model="inputUsername" /><br>
-    <button @click="submitUsername">Submit</button><br>
+    <button @click="submitUsername">{{$t("button.submit")}}</button><br>
     <label>
-      <input type="checkbox" v-model="isSubscribed" /> Subscribe to updates<br>
+      <input type="checkbox" v-model="isSubscribed" /> {{$t("checkbox.title")}}<br>
     </label>
   </div>
 </template>
@@ -62,7 +62,6 @@ export default {
     color:white;
     border-color:transparent;
   }
-
 
   username-form {
     margin: 10px 10px;

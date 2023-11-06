@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p v-if="username">こんにちは, {{ username }}!</p>
-    <p v-if="isSubscribed">更新情報を購読しています。</p>
-    <p v-else>更新情報を購読していません。</p>
+    <p v-if="username">{{ $t('app.hello-title', { username }) }}</p>
+    <p v-if="isSubscribed">{{$t("checkbox.check")}}</p>
+    <p v-else>{{$t("checkbox.checknull")}}</p>
   </div>
 </template>
 
