@@ -6,30 +6,28 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import UserNameInput from "./components/UserNameInput.vue";
 import UsernameDisplay from "./components/UsernameDisplay.vue";
 import SubscriptionDisplay from "./components/SubscriptionDisplay.vue";
 
-export default {
+@Component({
   components: {
     UserNameInput,
     UsernameDisplay,
     SubscriptionDisplay,
   },
-  data() {
-    return {
-      username: "",
-      isSubscribed: false, // チェックボックスの初期状態
-    };
-  },
-  methods: {
-    onUsernameSubmitted(username, isSubscribed) {
-      this.username = username;
-      this.isSubscribed = isSubscribed; // チェックボックスの状態を更新
-    },
-  },
-};
+})
+export default class App extends Vue {
+  username: string = "";
+  isSubscribed: boolean = false;
+
+  onUsernameSubmitted(username: string, isSubscribed: boolean) {
+    this.username = username;
+    this.isSubscribed = isSubscribed;
+  }
+}
 </script>
 
 <style>

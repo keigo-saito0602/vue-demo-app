@@ -5,18 +5,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({ name: "SubscriptionDisplay" })
 export default class SubscriptionDisplay extends Vue {
-  @Prop({ type: Boolean, default: false }) isSubscribed;
+  @Prop({ type: Boolean, default: false }) readonly isSubscribed!: boolean;
 
-  // コンポーネントがインスタンス化された直後に呼ばれる
-  created() {
-    console.log(
-      "SubscriptionDisplay.vue: created() - コンポーネントがインスタンス化されました"
-    );
+  created(): void {
+    console.log("SubscriptionDisplay.vue: created()");
   }
 }
 </script>

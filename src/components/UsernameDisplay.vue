@@ -4,54 +4,42 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({ name: "UsernameDisplay" })
 export default class UsernameDisplay extends Vue {
-  @Prop({ type: String, default: "" }) username;
+  @Prop({ default: "" }) readonly username!: string;
 
-  // コンポーネントがインスタンス化された直後に呼ばれる
-  created() {
+  created(): void {
     console.log(
       "UsernameDisplay.vue: created() - コンポーネントがインスタンス化されました"
     );
   }
 
-  // コンポーネントがマウントされた後に呼ばれる
-  mounted() {
+  mounted(): void {
     console.log(
       "UsernameDisplay.vue: mounted() - コンポーネントがマウントされました"
     );
   }
 
-  // コンポーネントが更新された後に呼ばれる ※あまり使われない
-  updated() {
+  updated(): void {
     console.log(
-      "UsernameDisplay.vue: updated() - コンポーネントが更新されました, 変更内容:",
+      "UsernameDisplay.vue: updated() - コンポーネントが更新されました:",
       this.username
     );
   }
 
-  // コンポーネントが描画される直前に呼ばれる ※あまり使われない
-  beforeMount() {
-    console.log(
-      "UsernameDisplay.vue: beforeMount() - コンポーネントが描画される前"
-    );
+  beforeMount(): void {
+    console.log("UsernameDisplay.vue: beforeMount()");
   }
 
-  // コンポーネントが破棄される直前に呼ばれる ※あまり使われない
-  beforeDestroy() {
-    console.log(
-      "UsernameDisplay.vue: beforeDestroy() - コンポーネントが破棄されます"
-    );
+  beforeDestroy(): void {
+    console.log("UsernameDisplay.vue: beforeDestroy()");
   }
 
-  // コンポーネントが完全に破棄された後に呼ばれる
-  destroyed() {
-    console.log(
-      "UsernameDisplay.vue: destroyed() - コンポーネントが破棄されました"
-    );
+  destroyed(): void {
+    console.log("UsernameDisplay.vue: destroyed()");
   }
 }
 </script>

@@ -9,21 +9,21 @@
     /><br />
     <button @click="submitUsername">{{ $t("button.submit") }}</button><br />
     <label>
-      <input type="checkbox" v-model="isSubscribed" /> {{ $t("checkbox.title")
-      }}<br />
+      <input type="checkbox" v-model="isSubscribed" />
+      {{ $t("checkbox.title") }}<br />
     </label>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({ name: "UserNameInput" })
 export default class UserNameInput extends Vue {
-  inputUsername = "";
-  isSubscribed = false;
+  inputUsername: string = "";
+  isSubscribed: boolean = false;
 
-  submitUsername() {
+  submitUsername(): void {
     this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
   }
 }
