@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "ユーザー名を入力してください",
+    "hello-title": "こんにちは、{username}さん"
+  },
+  "button": {
+    "submit": "送信"
+  },
+  "checkbox": {
+    "title": "チェックボックス",
+    "check": "チェックしています。",
+    "checknull": "チェックしていません。"
+  }
+}
