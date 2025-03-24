@@ -1,13 +1,13 @@
 {
-  "app":{
-    "title":"ユーザー名を入力してください",
-    "hello-title": "こんにちは、{ username }さん"
+  "app": {
+    "title": "ユーザー名を入力してください",
+    "hello-title": "こんにちは、{username}さん"
   },
-  "button":{
+  "button": {
     "submit": "送信"
   },
-  "checkbox":{
-    "title":"チェックボックス",
+  "checkbox": {
+    "title": "チェックボックス",
     "check": "チェックしています。",
     "checknull": "チェックしていません。"
   }
