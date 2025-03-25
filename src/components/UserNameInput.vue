@@ -21,7 +21,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({ name: "UserNameInput" })
 export default class UserNameInput extends Vue {
-  inputUsername = "双方向のテストだで";
+  inputUsername = "";
   isSubscribed = false;
   errorMessage = "";
 
