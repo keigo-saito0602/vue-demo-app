@@ -9,7 +9,7 @@
     /><br />
     <button @click="submitUsername">{{ $t("button.submit") }}</button><br />
     <label>
-      <input type="checkbox" v-model="isSubscribed" /> {{ $t("checkbox.title")
+      <input type="checkbox" v-modeßl="isSubscribed" /> {{ $t("checkbox.title")
       }}<br />
     </label>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -21,9 +21,9 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({ name: "UserNameInput" })
 export default class UserNameInput extends Vue {
-  inputUsername = "";
+  inputUsername = "双方向のテストだで";
   isSubscribed = false;
-  errorMessage = ""; 
+  errorMessage = "";
 
   submitUsername() {
     if (this.inputUsername.trim() === "") {
@@ -32,10 +32,12 @@ export default class UserNameInput extends Vue {
       return; // $emit しない
     }
     this.errorMessage = ""; // エラーメッセージをクリア
-    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
+    this.$emit("username-submitted", this.inputUsername, this.isSubscribed); // ここなんやん
+    // username-submitted イベント名 親にある@username-submittedのこと
+    // 親に渡す値 this.inputUsername, this.isSubscribed
+    // 親に書いてある関数の引数を見るとわかりやすいかも、onUsernameSubmitted
   }
 }
-
 </script>
 
 <style scoped>

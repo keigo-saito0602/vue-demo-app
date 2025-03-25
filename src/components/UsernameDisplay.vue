@@ -11,8 +11,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({ name: "UsernameDisplay" })
 export default class UsernameDisplay extends Vue {
-  @Prop(String) username;
-  @Prop(Boolean) isSubscribed;
+  @Prop(String) username; // 親に書いてある:username="username"が渡ってくる
+  @Prop(Boolean) isSubscribed; // 親に書いてある:is-subscribed="isSubscribed"が渡ってくる
 }
 </script>
 
