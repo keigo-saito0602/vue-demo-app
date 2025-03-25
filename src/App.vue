@@ -43,7 +43,11 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
 /* グローバルスタイル */
+=======
+/* Global style */
+>>>>>>> 417feedf5172738361cafdc04ca98bf25669ef8a
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
