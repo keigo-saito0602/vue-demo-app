@@ -25,14 +25,14 @@ export default class EmployeeCodeInput extends Vue {
   isSubscribed = false;
   errorMessage = "";
 
+  // 空白文字のみの場合も考慮して trim() を使う
   submitEmployeeCode() {
     if (this.employeeCode.trim() === "") {
-      // 空白文字のみの場合も考慮して trim() を使う
       this.errorMessage = this.$t("error.employee_code"); //エラーメッセージを格納
       return; // $emit しない
     }
     this.errorMessage = ""; // エラーメッセージをクリア
-    this.$emit("employee-code-submitted", this.employeeCode); // ここなんやん
+    this.$emit("employee-code-submitted", this.employeeCode);
     // username-submitted イベント名 親にある@username-submittedのこと
     // 親に渡す値 this.inputUsername, this.isSubscribed
     // 親に書いてある関数の引数を見るとわかりやすいかも、onUsernameSubmitted

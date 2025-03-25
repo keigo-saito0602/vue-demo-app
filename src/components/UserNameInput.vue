@@ -24,15 +24,14 @@ export default class UserNameInput extends Vue {
   inputUsername = "";
   isSubscribed = false;
   errorMessage = "";
-
+  // 空白文字のみの場合も考慮して trim() を使う
   submitUsername() {
     if (this.inputUsername.trim() === "") {
-      // 空白文字のみの場合も考慮して trim() を使う
       this.errorMessage = this.$t("1文字以上入力してください"); //エラーメッセージを格納
       return; // $emit しない
     }
     this.errorMessage = ""; // エラーメッセージをクリア
-    this.$emit("username-submitted", this.inputUsername, this.isSubscribed); // ここなんやん
+    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
     // username-submitted イベント名 親にある@username-submittedのこと
     // 親に渡す値 this.inputUsername, this.isSubscribed
     // 親に書いてある関数の引数を見るとわかりやすいかも、onUsernameSubmitted

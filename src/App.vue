@@ -2,8 +2,8 @@
   <div id="app">
     <UserNameInput @username-submitted="onUsernameSubmitted" />
     <UsernameDisplay :username="username" :is-subscribed="isSubscribed" />
-    <EmployeeCodeInput :employeecode-submitted="onEmployeecodeSubmitted" />
-    <UserGenderDisplay @update-gender="onGenderUpdated" /> <!-- ここでgender更新イベントを受け取る -->
+    <EmployeeCodeInput :employee-code-submitted="onEmployeecodeSubmitted" />
+    <UserGenderDisplay @update-gender="onGenderUpdated" /> 
   </div>
 </template>
 
@@ -34,6 +34,9 @@ export default {
       this.isSubscribed = isSubscribed; // チェックボックスの状態を更新
       this.employeeCode = employeeCode; // 社員コードを更新
       // gender は onGenderUpdated メソッドで更新される
+    },
+    onEmployeecodeSubmitted(employeeCode) {
+      this.employeeCode = employeeCode;
     },
     onGenderUpdated(gender) { // ここでgenderを更新する処理を追加
       this.gender = gender; // 性別を更新
