@@ -9,9 +9,10 @@
     /><br />
     <button @click="submitUsername">{{ $t("button.submit") }}</button><br />
     <label>
-      <input type="checkbox" v-model="isSubscribed" /> {{ $t("checkbox.title")
+      <input type="checkbox" v-modeßl="isSubscribed" /> {{ $t("checkbox.title")
       }}<br />
     </label>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -22,9 +23,19 @@ import { Component, Vue } from "vue-property-decorator";
 export default class UserNameInput extends Vue {
   inputUsername = "";
   isSubscribed = false;
+  errorMessage = "";
 
   submitUsername() {
-    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
+    if (this.inputUsername.trim() === "") {
+      // 空白文字のみの場合も考慮して trim() を使う
+      this.errorMessage = this.$t("1文字以上入力してください"); //エラーメッセージを格納
+      return; // $emit しない
+    }
+    this.errorMessage = ""; // エラーメッセージをクリア
+    this.$emit("username-submitted", this.inputUsername, this.isSubscribed); // ここなんやん
+    // username-submitted イベント名 親にある@username-submittedのこと
+    // 親に渡す値 this.inputUsername, this.isSubscribed
+    // 親に書いてある関数の引数を見るとわかりやすいかも、onUsernameSubmitted
   }
 }
 </script>
@@ -65,5 +76,10 @@ button:hover {
 
 .username-form {
   margin: 10px 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px; /* 必要に応じて余白を調整 */
 }
 </style>
