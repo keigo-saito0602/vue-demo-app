@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <UserNameInput @username-submitted="onUsernameSubmitted" />
-    <UsernameDisplay :username="username" :is-subscribed="isSubscribed" />
+    <UserNameDisplay :username="username" :is-subscribed="isSubscribed" />
     <EmployeeCodeInput @employee-code-submitted="onEmployeeCodeSubmitted" />
     <EmployeeCodeDisplay :employeeCode="employeeCode" />
     <UserGenderDisplay @update-gender="onGenderUpdated" /> 
@@ -10,7 +10,7 @@
 
 <script>
 import UserNameInput from "./components/UserNameInput.vue";
-import UsernameDisplay from "./components/UserNameDisplay.vue";
+import UserNameDisplay from "./components/UserNameDisplay.vue";
 import EmployeeCodeInput from "./components/EmployeeCodeInput.vue";
 import EmployeeCodeDisplay from "./components/EmployeeCodeDisplay.vue";
 import UserGenderDisplay from "./components/UserGenderDisplay.vue";
@@ -18,7 +18,7 @@ import UserGenderDisplay from "./components/UserGenderDisplay.vue";
 export default {
   components: {
     UserNameInput,
-    UsernameDisplay,
+    UserNameDisplay,
     EmployeeCodeInput,
     EmployeeCodeDisplay,
     UserGenderDisplay,
