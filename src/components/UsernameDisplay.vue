@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="username">{{ $t("app.hello-title", { username }) }}</p>
+    <p v-if="username">{{ $t("app.hello_title", { username }) }}</p>
     <p v-if="isSubscribed">{{ $t("checkbox.check") }}</p>
     <p v-else>{{ $t("checkbox.checknull") }}</p>
   </div>
@@ -9,8 +9,8 @@
 <script>
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component({ name: "UsernameDisplay" })
-export default class UsernameDisplay extends Vue {
+@Component({ name: "UserNameDisplay" })
+export default class UserNameDisplay extends Vue {
   @Prop(String) username; // 親に書いてある:username="username"が渡ってくる
   @Prop(Boolean) isSubscribed; // 親に書いてある:is-subscribed="isSubscribed"が渡ってくる
 }

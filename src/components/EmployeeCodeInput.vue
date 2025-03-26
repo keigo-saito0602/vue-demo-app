@@ -1,13 +1,13 @@
 <template>
   <div>
-    <label for="username">{{ $t("app.title") }}</label>
+    <label for="employee-code">{{ $t("app.title2") }}</label>
     <input
-      class="username-form"
+      class="employee-code-form"
       type="text"
-      id="username"
-      v-model="inputUsername"
+      id="employee-code"
+      v-model="inputEmployeeCode"
     /><br />
-    <button @click="submitUsername">{{ $t("button.submit") }}</button><br />
+    <button @click="submitEmployeeCode">{{ $t("button.submit") }}</button><br />
     <label>
       <input type="checkbox" v-model="isSubscribed" /> {{ $t("checkbox.title")
       }}<br />
@@ -19,19 +19,21 @@
 <script>
 import { Component, Vue } from "vue-property-decorator";
 
-@Component({ name: "UserNameInput" })
-export default class UserNameInput extends Vue {
-  inputUsername = "";
+@Component({ name: "EmployeeCodeInput" })
+export default class EmployeeCodeInput extends Vue {
+  inputEmployeeCode = "";
   isSubscribed = false;
   errorMessage = "";
+
   // 空白文字のみの場合も考慮して trim() を使う
-  submitUsername() {
-    if (this.inputUsername.trim() === "") {
+  submitEmployeeCode() {
+    console.log("Entered employee code:", this.inputEmployeeCode); //デバッグ
+    if (this.inputEmployeeCode.trim() === "") {
       this.errorMessage = this.$t("1文字以上入力してください"); //エラーメッセージを格納
       return; // $emit しない
     }
     this.errorMessage = ""; // エラーメッセージをクリア
-    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
+    this.$emit("employee-code-submitted", this.inputEmployeeCode);
     // username-submitted イベント名 親にある@username-submittedのこと
     // 親に渡す値 this.inputUsername, this.isSubscribed
     // 親に書いてある関数の引数を見るとわかりやすいかも、onUsernameSubmitted
