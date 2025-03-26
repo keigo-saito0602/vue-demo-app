@@ -1,14 +1,57 @@
 {
   "app": {
-    "title": "ユーザー名を入力してください",
-    "hello-title": "こんにちは、{username}さん"
+    "header": {
+      "title": "Welcome to Vue Demo App 🎉",
+      "explanation": "このアプリでは、Vue2 の基礎を学ぶことができます。",
+      "prop_emit": "Prop & Emit の使い方",
+      "life_cycle": "ライフサイクルの流れ"
+    },
+    "footer": {
+      "title": "Vue2 The Progressive JavaScript Framework",
+      "link": "https://v2.vuejs.org/"
+    },
+    "start": {
+      "title": "🎨 Vue Demo App<",
+      "navigate": {
+        "home": "ホーム",
+        "prop_emit": "PropEmit",
+        "life_cycle": "ライフサイクル"
+      }
+    },
+    "prop_emit": {
+      "user": {
+        "title": "ユーザー名を入力してください",
+        "hello_title": "こんにちは、{username}さん",
+        "select_gender": "性別を選択してください",
+        "gender": {
+          "male": "男性",
+          "female": "女性",
+          "other": "その他"
+        },
+        "selected_gender": "選択した性別: {gender}",
+        "checkbox": {
+          "title": "以前登録したことがある場合こちらをチェックしてください。",
+          "check": "チェック済",
+          "checknull": "チェックしていません。"
+        }
+      },
+      "employee": {
+        "navigate": "社員コードを入力してください",
+        "employee_code": "社員番号は {employeeCode}です",
+        "checkbox": {
+          "title": "社員証が必要な場合はこちらをチェックしてください。",
+          "check": "必要",
+          "checknull": "不必要"
+        }
+      }
+    },
+    "life_cycle": {}
   },
   "button": {
     "submit": "送信"
   },
-  "checkbox": {
-    "title": "チェックボックス",
-    "check": "チェックしています。",
-    "checknull": "チェックしていません。"
+  "error": {
+    "empty_username": "ユーザー名を入力してください",
+    "empty_employee_code": "社員番号を入力してください"
   }
 }
