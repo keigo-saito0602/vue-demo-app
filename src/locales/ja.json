@@ -2,12 +2,13 @@
   "app": {
     "title": "ユーザー名を入力してください",
     "title2": "社員コードを入力してください",  
-    "hello-title": "こんにちは、{username}さん",
-    "select-gender": "性別を選択してください",
+    "hello_title": "こんにちは、{username}さん",
+    "employee_code": "社員番号は {employeeCode}です",
+    "select_gender": "性別を選択してください",
     "male": "男性",
     "female": "女性",
     "other": "その他",
-    "selected-gender": "選択した性別: {gender}"
+    "selected_gender": "選択した性別: {gender}"
   },
   "button": {
     "submit": "送信"

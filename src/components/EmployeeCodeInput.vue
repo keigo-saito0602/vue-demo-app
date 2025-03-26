@@ -5,7 +5,7 @@
       class="employee-code-form"
       type="text"
       id="employee-code"
-      v-model="employeeCode"
+      v-model="inputEmployeeCode"
     /><br />
     <button @click="submitEmployeeCode">{{ $t("button.submit") }}</button><br />
     <label>
@@ -21,18 +21,19 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({ name: "EmployeeCodeInput" })
 export default class EmployeeCodeInput extends Vue {
-  employeeCode = "";
+  inputEmployeeCode = "";
   isSubscribed = false;
   errorMessage = "";
 
   // 空白文字のみの場合も考慮して trim() を使う
   submitEmployeeCode() {
-    if (this.employeeCode.trim() === "") {
+    console.log("Entered employee code:", this.inputEmployeeCode); //デバッグ
+    if (this.inputEmployeeCode.trim() === "") {
       this.errorMessage = this.$t("1文字以上入力してください"); //エラーメッセージを格納
       return; // $emit しない
     }
     this.errorMessage = ""; // エラーメッセージをクリア
-    this.$emit("employee-code-submitted", this.employeeCode);
+    this.$emit("employee-code-submitted", this.inputEmployeeCode);
     // username-submitted イベント名 親にある@username-submittedのこと
     // 親に渡す値 this.inputUsername, this.isSubscribed
     // 親に書いてある関数の引数を見るとわかりやすいかも、onUsernameSubmitted

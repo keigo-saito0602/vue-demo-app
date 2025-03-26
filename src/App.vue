@@ -2,15 +2,17 @@
   <div id="app">
     <UserNameInput @username-submitted="onUsernameSubmitted" />
     <UsernameDisplay :username="username" :is-subscribed="isSubscribed" />
-    <EmployeeCodeInput @employee-code-submitted="onEmployeecodeSubmitted" />
+    <EmployeeCodeInput @employee-code-submitted="onEmployeeCodeSubmitted" />
+    <EmployeeCodeDisplay :employeeCode="employeeCode" />
     <UserGenderDisplay @update-gender="onGenderUpdated" /> 
   </div>
 </template>
 
 <script>
 import UserNameInput from "./components/UserNameInput.vue";
-import UsernameDisplay from "./components/UsernameDisplay.vue";
+import UsernameDisplay from "./components/UserNameDisplay.vue";
 import EmployeeCodeInput from "./components/EmployeeCodeInput.vue";
+import EmployeeCodeDisplay from "./components/EmployeeCodeDisplay.vue";
 import UserGenderDisplay from "./components/UserGenderDisplay.vue";
 
 export default {
@@ -18,6 +20,7 @@ export default {
     UserNameInput,
     UsernameDisplay,
     EmployeeCodeInput,
+    EmployeeCodeDisplay,
     UserGenderDisplay,
   },
   data() {
@@ -29,13 +32,12 @@ export default {
     };
   },
   methods: {
-    onUsernameSubmitted(username, isSubscribed, employeeCode) {
+    onUsernameSubmitted(username, isSubscribed) {
       this.username = username;
       this.isSubscribed = isSubscribed; // チェックボックスの状態を更新
-      this.employeeCode = employeeCode; // 社員コードを更新
       // gender は onGenderUpdated メソッドで更新される
     },
-    onEmployeecodeSubmitted(employeeCode) {
+    onEmployeeCodeSubmitted(employeeCode) {
       this.employeeCode = employeeCode;
     },
     onGenderUpdated(gender) { // ここでgenderを更新する処理を追加

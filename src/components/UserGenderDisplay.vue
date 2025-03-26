@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label for="gender">{{ $t("app.select-gender") }}</label>
+    <label for="gender">{{ $t("app.select_gender") }}</label>
     <select v-model="selectedGender" id="gender">
       <option value="male">{{ $t("app.male") }}</option>
       <option value="female">{{ $t("app.female") }}</option>
@@ -8,7 +8,7 @@
     </select>
 
     <!-- 性別の表示 -->
-    <p v-if="selectedGender">{{ $t("app.selected-gender", { gender: $t('app.' + selectedGender) }) }}</p>
+    <p v-if="selectedGender">{{ $t("app.selected_gender", { gender: $t('app.' + selectedGender) }) }}</p>
     <!-- 上記で、選択した性別を翻訳された日本語で表示 -->
   </div>
 </template>
