@@ -9,7 +9,7 @@
     /><br />
     <button @click="submitUsername">{{ $t("button.submit") }}</button><br />
     <label>
-      <input type="checkbox" v-modeßl="isSubscribed" /> {{ $t("checkbox.title")
+      <input type="checkbox" v-model="isSubscribed" /> {{ $t("checkbox.title")
       }}<br />
     </label>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>

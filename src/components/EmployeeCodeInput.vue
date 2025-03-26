@@ -28,7 +28,7 @@ export default class EmployeeCodeInput extends Vue {
   // 空白文字のみの場合も考慮して trim() を使う
   submitEmployeeCode() {
     if (this.employeeCode.trim() === "") {
-      this.errorMessage = this.$t("error.employee_code"); //エラーメッセージを格納
+      this.errorMessage = this.$t("1文字以上入力してください"); //エラーメッセージを格納
       return; // $emit しない
     }
     this.errorMessage = ""; // エラーメッセージをクリア

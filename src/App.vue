@@ -2,7 +2,7 @@
   <div id="app">
     <UserNameInput @username-submitted="onUsernameSubmitted" />
     <UsernameDisplay :username="username" :is-subscribed="isSubscribed" />
-    <EmployeeCodeInput :employee-code-submitted="onEmployeecodeSubmitted" />
+    <EmployeeCodeInput @employee-code-submitted="onEmployeecodeSubmitted" />
     <UserGenderDisplay @update-gender="onGenderUpdated" /> 
   </div>
 </template>
