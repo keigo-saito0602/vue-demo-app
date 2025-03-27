@@ -7,11 +7,9 @@
         <StartPage />
       </div>
       <div v-else-if="currentPage === 'prop-emit'">
-        <h1>Prop Emit</h1>
         <PropEmitCurriculum />
       </div>
       <div v-else-if="currentPage === 'lifecycle'">
-        <h1>Life Cycle</h1>
         <LifeCycle />
       </div>
     </main>

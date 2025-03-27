@@ -13,12 +13,12 @@
 
 <script>
 import { Component, Prop, Vue } from "vue-property-decorator";
-import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
+import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue";
 
 @Component({
-  name: "UsernameDisplay",
+  name: "UserNameDisplay",
   components: {
-    DemoAppCheckbox,
+    DemoAppCheckboxDisplay,
   },
 })
 export default class UsernameDisplay extends Vue {

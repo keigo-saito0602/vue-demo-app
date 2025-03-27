@@ -1,20 +1,24 @@
 <template>
-  <div class="form-grid">
-    <div class="form-column">
-      <UserNameInput @username-submitted="onUsernameSubmitted" />
-      <UserNameDisplay :username="username" :is-subscribed="isSubscribed" />
-    </div>
+  <div class="page-container">
+    <h1 class="page-title">Prop Emit</h1>
 
-    <div class="form-column">
-      <UserGenderDisplay @update-gender="onGenderUpdated" />
-    </div>
+    <div class="card-container">
+      <div class="form-card">
+        <UserNameInput @username-submitted="onUsernameSubmitted" />
+        <UserNameDisplay :username="username" :is-subscribed="isSubscribed" />
+      </div>
 
-    <div class="form-column">
-      <EmployeeCodeInput @employee-code-submitted="onEmployeeCodeSubmitted" />
-      <EmployeeCodeDisplay
-        :employeeCode="employeeCode"
-        :isSubscribed="isSubscribed"
-      />
+      <div class="form-card">
+        <UserGenderDisplay @update-gender="onGenderUpdated" />
+      </div>
+
+      <div class="form-card">
+        <EmployeeCodeInput @employee-code-submitted="onEmployeeCodeSubmitted" />
+        <EmployeeCodeDisplay
+          :employeeCode="employeeCode"
+          :isSubscribed="isSubscribed"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -60,23 +64,42 @@ export default {
 </script>
 
 <style scoped>
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 50px;
-  row-gap: 24px;
-  align-items: start;
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px;
 }
 
-.form-column {
+.page-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 32px;
+  color: var(--vue-dark);
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+.form-card {
+  flex: 1 1 45%;
+  min-width: 300px;
+  background-color: var(--white);
+  border: 1px solid var(--vue-light-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 @media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
+  .form-card {
+    flex: 1 1 100%;
   }
 }
 </style>

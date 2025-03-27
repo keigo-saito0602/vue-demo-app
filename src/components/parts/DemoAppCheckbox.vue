@@ -2,9 +2,9 @@
   <label class="checkbox-wrapper">
     <input
       type="checkbox"
-      :checked="modelValue"
+      :checked="value"
       :disabled="disabled"
-      @change="$emit('update:modelValue', $event.target.checked)"
+      @change="$emit('input', $event.target.checked)"
     />
     <span class="checkbox-label">{{ label }}</span>
   </label>
@@ -14,7 +14,7 @@
 export default {
   name: "DemoAppCheckbox",
   props: {
-    modelValue: {
+    value: {
       type: Boolean,
       required: true,
     },
