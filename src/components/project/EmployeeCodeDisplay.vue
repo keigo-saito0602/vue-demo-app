@@ -1,8 +1,8 @@
 <template>
   <div>
     <p v-if="employeeCode">{{ $t("app.employee_code", { employeeCode }) }}</p>
-    <p v-if="isSubscribed">{{ $t("checkbox.check") }}</p>
-    <p v-else>{{ $t("checkbox.checknull") }}</p>  
+    <p v-if="termsOfUse">{{ $t("checkbox.check") }}</p>
+    <p v-else>{{ $t("checkbox.checknull") }}</p>
   </div>
 </template>
 
@@ -11,8 +11,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({ name: "EmployeeCodeDisplay" })
 export default class EmployeeCodeDisplay extends Vue {
-  @Prop(String) employeeCode; 
-  @Prop(Boolean) isSubscribed; 
+  @Prop(String) employeeCode;
+  @Prop(Boolean) termsOfUse;
 }
 </script>
 
@@ -20,7 +20,7 @@ export default class EmployeeCodeDisplay extends Vue {
 .greeting {
   font-size: 20px;
   font-weight: bold;
-  color: #007bff;
+  color: var(--vue-green);
   margin-top: 20px;
 }
 </style>
