@@ -47,7 +47,7 @@ export default {
 }
 
 .header-actions button {
-  background-color: var(--white);
+  background-color: var(--vue-green-bright);
   color: var(--black);
   font-weight: bold;
   border: none;
