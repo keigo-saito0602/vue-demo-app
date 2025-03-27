@@ -10,6 +10,11 @@
       v-model="inputEmployeeCode"
     />
 
+    <div class="checkbox-group">
+      <!-- DemoAppCheckbox を使用して termsOfUse とバインド -->
+      <DemoAppCheckbox v-model="termsOfUse" :label="$t('app.prop_emit.user.checkbox.title')" />
+    </div>
+
     <DemoAppButton
       :loading="loading"
       :disabled="inputEmployeeCode.trim() === ''"
@@ -17,12 +22,7 @@
       @click="submitEmployeeCode"
     />
 
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" v-model="termsOfUse" />
-        {{ $t("checkbox.title") }}
-      </label>
-    </div>
+
 
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
@@ -31,11 +31,13 @@
 <script>
 import { Component, Vue } from "vue-property-decorator";
 import DemoAppButton from "@/components/parts/DemoAppButton.vue";
+import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
 
 @Component({
   name: "EmployeeCodeInput",
   components: {
     DemoAppButton,
+    DemoAppCheckbox, // コンポーネントを登録
   },
 })
 export default class EmployeeCodeInput extends Vue {
