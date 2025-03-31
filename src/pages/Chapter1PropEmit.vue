@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     onUsernameSubmitted(username, isSubscribed) {
- 
       this.username = username;
       this.isSubscribed = isSubscribed;
     },

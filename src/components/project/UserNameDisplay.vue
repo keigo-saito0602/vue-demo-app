@@ -24,7 +24,6 @@ import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue
 export default class UsernameDisplay extends Vue {
   @Prop({ type: String, default: "" }) username;
   @Prop({ type: Boolean, default: false }) isSubscribed;
-
 }
 </script>
 
