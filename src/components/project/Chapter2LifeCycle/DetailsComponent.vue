@@ -18,22 +18,22 @@ export default {
     },
   },
   created() {
-    console.log(this.$t("app.details.lifeCycle.created"));
+    console.log(this.$t("app.lifeCycle.details"));
     console.log(this.$t("app.lifeCycle.created"));
     console.log(this.$t("app.lifeCycle.input", { message: this.message }));
   },
   mounted() {
-    console.log(this.$t("app.details.lifeCycle.created"));
+    console.log(this.$t("app.lifeCycle.details"));
     console.log(this.$t("app.lifeCycle.mounted"));
     console.log(this.$t("app.lifeCycle.input", { message: this.message }));
   },
   updated() {
-    console.log(this.$t("app.details.lifeCycle.created"));
+    console.log(this.$t("app.lifeCycle.details"));
     console.log(this.$t("app.lifeCycle.updated"));
     console.log(this.$t("app.lifeCycle.input", { message: this.message }));
   },
   destroyed() {
-    console.log(this.$t("app.details.lifeCycle.created"));
+    console.log(this.$t("app.lifeCycle.details"));
     console.log(this.$t("app.lifeCycle.destroyed"));
     console.log(this.$t("app.lifeCycle.input", { message: this.message }));
   },
