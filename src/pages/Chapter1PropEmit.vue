@@ -16,7 +16,7 @@
         <EmployeeCodeInput @employee-code-submitted="onEmployeeCodeSubmitted" />
         <EmployeeCodeDisplay
           :employeeCode="employeeCode"
-          :isSubscribed="isSubscribed"
+          :isSubscribed="isEmployeeSubscribed"
         />
       </div>
     </div>
@@ -45,6 +45,9 @@ export default {
       employeeCode: "",
       termsOfUse: false,
       gender: "",
+
+      isUserSubscribed: false,    
+      isEmployeeSubscribed: false, 
     };
   },
   methods: {
@@ -52,9 +55,9 @@ export default {
       this.username = username;
       this.isSubscribed = isSubscribed;
     },
-    onEmployeeCodeSubmitted(employeeCode, termsOfUse) {
+    onEmployeeCodeSubmitted(employeeCode, isSubscribed) {
       this.employeeCode = employeeCode;
-      this.termsOfUse = termsOfUse;
+      this.isEmployeeSubscribed = isSubscribed;
     },
     onGenderUpdated(gender) {
       this.gender = gender;

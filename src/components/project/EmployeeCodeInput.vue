@@ -1,8 +1,6 @@
 <template>
   <div class="form-group">
-    <label for="employee-code">{{
-      $t("app.prop_emit.employee.navigate")
-    }}</label>
+    <label for="employee-code">{{$t("app.prop_emit.employee.navigate")}}</label>
     <input
       class="form-input"
       type="text"
@@ -10,16 +8,12 @@
       v-model="inputEmployeeCode"
     />
 
-    <button class="form-button" @click="submitEmployeeCode">
-      {{ $t("button.submit") }}
-    </button>
+    <DemoAppCheckbox
+      v-model="isSubscribed"
+      :label="$t('app.prop_emit.employee.checkbox.title')"
+    />
 
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" v-model="termsOfUse" />
-        {{ $t("checkbox.title") }}
-      </label>
-    </div>
+     <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
 
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
@@ -27,12 +21,21 @@
 
 <script>
 import { Component, Vue } from "vue-property-decorator";
+import DemoAppButton from "@/components/parts/DemoAppButton.vue";
+import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
 
-@Component({ name: "EmployeeCodeInput" })
+@Component({
+  name: "EmployeeCodeInput",
+  components: {
+    DemoAppButton,
+    DemoAppCheckbox, // コンポーネントを登録
+  },
+})
 export default class EmployeeCodeInput extends Vue {
   inputEmployeeCode = "";
-  termsOfUse = false;
+  isSubscribed = false;
   errorMessage = "";
+  loading = false;
 
   submitEmployeeCode() {
     if (this.inputEmployeeCode.trim() === "") {
@@ -43,7 +46,7 @@ export default class EmployeeCodeInput extends Vue {
     this.$emit(
       "employee-code-submitted",
       this.inputEmployeeCode,
-      this.termsOfUse
+      this.isSubscribed
     );
   }
 }
@@ -63,20 +66,6 @@ export default class EmployeeCodeInput extends Vue {
   font-size: 16px;
   border: 1px solid var(--vue-green);
   border-radius: 8px;
-}
-
-.form-button {
-  padding: 6px 20px;
-  border-radius: 20px;
-  border: 1px solid var(--dark-gray);
-  background: transparent;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.form-button:hover {
-  background-color: var(--vue-green);
-  color: white;
 }
 
 .checkbox-group {
