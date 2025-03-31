@@ -5,8 +5,8 @@
     </p>
     <DemoAppCheckboxDisplay
       :isChecked="isSubscribed"
-      :checkedText="$t('app.prop_emit.user.checkbox.check')"
-      :uncheckedText="$t('app.prop_emit.user.checkbox.checknull')"
+      :checkedText="$t('app.prop_emit.employee.checkbox.check')"
+      :uncheckedText="$t('app.prop_emit.employee.checkbox.checknull')"
     />
   </div>
 </template>

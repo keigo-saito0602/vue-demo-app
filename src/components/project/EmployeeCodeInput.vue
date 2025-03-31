@@ -10,7 +10,7 @@
 
     <DemoAppCheckbox
       v-model="isSubscribed"
-      :label="$t('app.prop_emit.user.checkbox.title')"
+      :label="$t('app.prop_emit.employee.checkbox.title')"
     />
 
      <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
