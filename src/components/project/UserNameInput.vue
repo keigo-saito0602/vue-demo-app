@@ -41,7 +41,7 @@ export default class UserNameInput extends Vue {
       this.errorMessage = this.$t("error.empty_username");
       return;
     }
-    
+
     this.errorMessage = "";
     this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
   }

@@ -11,7 +11,7 @@
       "link": "https://v2.vuejs.org/"
     },
     "start": {
-      "title": "🎨 Vue Demo App<",
+      "title": "🎨 Vue Demo App",
       "navigate": {
         "home": "ホーム",
         "prop_emit": "PropEmit",
@@ -45,7 +45,27 @@
         }
       }
     },
-    "life_cycle": {}
+    "lifeCycle": {
+      "title": "ライフサイクル",
+      "enableChild": "子コンポーネントを有効にする",
+      "editTitle": "編集モード",
+      "editMessage": "これは表示された子コンポーネント編集モードです。",
+      "detailsTitle": "詳細モード",
+      "detailsMessage": "これは保存後に表示される詳細情報です。",
+      "inputPlaceholder": "メッセージを入力",
+      "inputted": "入力された内容",
+      "edit": "EditComponent",
+      "details": "DetailsComponent",
+      "created": "🛠 created: コンポーネントが作成されました",
+      "mounted": "✅ mounted: コンポーネントがDOMにマウントされました",
+      "updated": "🔁 updated: コンポーネントが更新されました",
+      "destroyed": "❌ destroyed: コンポーネントが破棄されました",
+      "input": "入力された値{message}"
+    },
+    "common": {
+      "save": "保存",
+      "edit": "変更"
+    }
   },
   "button": {
     "submit": "送信"

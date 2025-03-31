@@ -1,6 +1,8 @@
 <template>
   <div class="form-group">
-    <label for="employee-code">{{$t("app.prop_emit.employee.navigate")}}</label>
+    <label for="employee-code">{{
+      $t("app.prop_emit.employee.navigate")
+    }}</label>
     <input
       class="form-input"
       type="text"
@@ -13,7 +15,7 @@
       :label="$t('app.prop_emit.employee.checkbox.title')"
     />
 
-     <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
+    <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
 
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>

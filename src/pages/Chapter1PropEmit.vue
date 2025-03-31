@@ -46,8 +46,8 @@ export default {
       termsOfUse: false,
       gender: "",
 
-      isUserSubscribed: false,    
-      isEmployeeSubscribed: false, 
+      isUserSubscribed: false,
+      isEmployeeSubscribed: false,
     };
   },
   methods: {
