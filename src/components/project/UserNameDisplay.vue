@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue";
 
 @Component({
@@ -25,12 +25,6 @@ export default class UsernameDisplay extends Vue {
   @Prop({ type: String, default: "" }) username;
   @Prop({ type: Boolean, default: false }) isSubscribed;
 
-  isSubscribed = this.isSubscribed; // ローカルデータとして持つ
-
-  @Watch("isSubscribed") // 親から渡ってきた値が変更されたら、ローカルデータを更新
-  onIsSubscribedChanged(newValue) {
-    this.isSubscribed = newValue;
-  }
 }
 </script>
 
