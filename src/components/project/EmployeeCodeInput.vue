@@ -1,8 +1,6 @@
 <template>
   <div class="form-group">
-    <label for="employee-code">{{
-      $t("app.prop_emit.employee.navigate")
-    }}</label>
+    <label for="employee-code">{{$t("app.prop_emit.employee.navigate")}}</label>
     <input
       class="form-input"
       type="text"
@@ -10,19 +8,12 @@
       v-model="inputEmployeeCode"
     />
 
-    <div class="checkbox-group">
-      <!-- DemoAppCheckbox を使用して termsOfUse とバインド -->
-      <DemoAppCheckbox v-model="termsOfUse" :label="$t('app.prop_emit.user.checkbox.title')" />
-    </div>
-
-    <DemoAppButton
-      :loading="loading"
-      :disabled="inputEmployeeCode.trim() === ''"
-      :label="$t('button.submit')"
-      @click="submitEmployeeCode"
+    <DemoAppCheckbox
+      v-model="isSubscribed"
+      :label="$t('app.prop_emit.user.checkbox.title')"
     />
 
-
+     <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
 
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
@@ -42,7 +33,7 @@ import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
 })
 export default class EmployeeCodeInput extends Vue {
   inputEmployeeCode = "";
-  termsOfUse = false;
+  isSubscribed = false;
   errorMessage = "";
   loading = false;
 
@@ -55,7 +46,7 @@ export default class EmployeeCodeInput extends Vue {
     this.$emit(
       "employee-code-submitted",
       this.inputEmployeeCode,
-      this.termsOfUse
+      this.isSubscribed
     );
   }
 }

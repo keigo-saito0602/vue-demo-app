@@ -49,12 +49,14 @@ export default {
   },
   methods: {
     onUsernameSubmitted(username, isSubscribed) {
+ 
       this.username = username;
       this.isSubscribed = isSubscribed;
     },
-    onEmployeeCodeSubmitted(employeeCode, termsOfUse) {
+    onEmployeeCodeSubmitted(employeeCode, isSubscribed) {
       this.employeeCode = employeeCode;
-      this.termsOfUse = termsOfUse;
+      this.isSubscribed = isSubscribed;
+      console.log("isSubscribed",this.isSubscribed)
     },
     onGenderUpdated(gender) {
       this.gender = gender;

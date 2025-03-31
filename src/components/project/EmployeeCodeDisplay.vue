@@ -1,11 +1,11 @@
 <template>
   <div>
     <p v-if="employeeCode">
-      {{ $t("app.employee_code", { employeeCode }) }}
+      {{ $t("app.prop_emit.employee.employee_code", { employeeCode }) }}
     </p>
     <DemoAppCheckboxDisplay
-      :isChecked="termsOfUse"
-      :checkedText="$t('checkbox.check')"
+      :isChecked="isSubscribed"
+      :checkedText="$t('app.prop_emit.user.checkbox.check')"
       :uncheckedText="$t('app.prop_emit.user.checkbox.checknull')"
     />
   </div>
@@ -23,7 +23,7 @@ import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue
 })
 export default class EmployeeCodeDisplay extends Vue {
   @Prop(String) employeeCode;
-  @Prop(Boolean) termsOfUse;
+  @Prop(Boolean) isSubscribed;
 }
 </script>
 
