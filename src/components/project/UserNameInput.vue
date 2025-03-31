@@ -41,8 +41,14 @@ export default class UserNameInput extends Vue {
       this.errorMessage = this.$t("error.empty_username");
       return;
     }
+
     this.errorMessage = "";
     this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
+  }
+
+  updateSubscription(value) {
+    this.isSubscribed = value; // ローカルで更新
+    this.$emit("update:isSubscribed", value); // 親に通知
   }
 }
 </script>
