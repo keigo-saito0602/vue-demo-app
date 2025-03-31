@@ -1,21 +1,19 @@
 <template>
   <div class="form-group">
-    <label for="employee-code">{{
-      $t("app.prop_emit.employee.navigate")
-    }}</label>
+    <label for="username">{{ $t("app.prop_emit.user.title") }}</label>
     <input
       class="form-input"
       type="text"
-      id="employee-code"
-      v-model="inputEmployeeCode"
+      id="username"
+      v-model="inputUsername"
     />
 
     <DemoAppCheckbox
       v-model="isSubscribed"
-      :label="$t('app.prop_emit.employee.checkbox.title')"
+      :label="$t('app.prop_emit.user.checkbox.title')"
     />
 
-    <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
+    <DemoAppButton @click="submitUsername" :label="$t('button.submit')" />
 
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
@@ -27,35 +25,35 @@ import DemoAppButton from "@/components/parts/DemoAppButton.vue";
 import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
 
 @Component({
-  name: "EmployeeCodeInput",
+  name: "UserNameInput",
   components: {
     DemoAppButton,
-    DemoAppCheckbox, // コンポーネントを登録
+    DemoAppCheckbox,
   },
 })
-export default class EmployeeCodeInput extends Vue {
-  inputEmployeeCode = "";
+export default class UserNameInput extends Vue {
+  inputUsername = "";
   isSubscribed = false;
   errorMessage = "";
-  loading = false;
 
-  submitEmployeeCode() {
-    if (this.inputEmployeeCode.trim() === "") {
-      this.errorMessage = this.$t("error.empty_employee_code");
+  submitUsername() {
+    if (this.inputUsername.trim() === "") {
+      this.errorMessage = this.$t("error.empty_username");
       return;
     }
+
     this.errorMessage = "";
-    this.$emit(
-      "employee-code-submitted",
-      this.inputEmployeeCode,
-      this.isSubscribed
-    );
+    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
+  }
+
+  updateSubscription(value) {
+    this.isSubscribed = value;
+    this.$emit("update:isSubscribed", value);
   }
 }
 </script>
 
 <style scoped>
-/* 共通スタイルと同じにする */
 .form-group {
   display: flex;
   flex-direction: column;

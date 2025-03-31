@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import UserNameInput from "../components/project/UserNameInput.vue";
-import UserNameDisplay from "../components/project/UserNameDisplay.vue";
-import EmployeeCodeInput from "../components/project/EmployeeCodeInput.vue";
-import EmployeeCodeDisplay from "../components/project/EmployeeCodeDisplay.vue";
-import UserGenderDisplay from "../components/project/UserGenderDisplay.vue";
+import UserNameInput from "@/components/project/Chapter1PropEmit/UserNameInput.vue";
+import UserNameDisplay from "@/components/project/Chapter1PropEmit/UserNameDisplay.vue";
+import EmployeeCodeInput from "@/components/project/Chapter1PropEmit/EmployeeCodeInput.vue";
+import EmployeeCodeDisplay from "@/components/project/Chapter1PropEmit/EmployeeCodeDisplay.vue";
+import UserGenderDisplay from "@/components/project/Chapter1PropEmit/UserGenderDisplay.vue";
 
 export default {
   components: {
