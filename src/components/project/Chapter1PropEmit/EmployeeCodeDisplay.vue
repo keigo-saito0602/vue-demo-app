@@ -18,7 +18,7 @@ import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue
 @Component({
   name: "EmployeeCodeDisplay",
   components: {
-    DemoAppCheckboxDisplay, // チェックボックス表示用コンポーネントをインポート
+    DemoAppCheckboxDisplay,
   },
 })
 export default class EmployeeCodeDisplay extends Vue {

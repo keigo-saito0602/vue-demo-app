@@ -18,11 +18,6 @@
 <script>
 export default {
   name: "AppHeader",
-  methods: {
-    handleAction() {
-      alert("設定ボタンがクリックされました！");
-    },
-  },
 };
 </script>
 

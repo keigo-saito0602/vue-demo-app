@@ -47,8 +47,8 @@ export default class UserNameInput extends Vue {
   }
 
   updateSubscription(value) {
-    this.isSubscribed = value; // ローカルで更新
-    this.$emit("update:isSubscribed", value); // 親に通知
+    this.isSubscribed = value;
+    this.$emit("update:isSubscribed", value);
   }
 }
 </script>

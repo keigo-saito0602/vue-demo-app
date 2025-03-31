@@ -30,7 +30,7 @@ import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
   name: "EmployeeCodeInput",
   components: {
     DemoAppButton,
-    DemoAppCheckbox, // コンポーネントを登録
+    DemoAppCheckbox,
   },
 })
 export default class EmployeeCodeInput extends Vue {
@@ -55,7 +55,6 @@ export default class EmployeeCodeInput extends Vue {
 </script>
 
 <style scoped>
-/* 共通スタイルと同じにする */
 .form-group {
   display: flex;
   flex-direction: column;

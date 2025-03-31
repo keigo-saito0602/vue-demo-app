@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import EditComponent from "@/components/project/Chapter2LifeCycle/EditComponent.vue";
-import DetailsComponent from "@/components/project/Chapter2LifeCycle/DetailsComponent.vue";
+import EditComponent from "@/components/project/Chapter2LifeCycle/Edit.vue";
+import DetailsComponent from "@/components/project/Chapter2LifeCycle/Details.vue";
 
 export default {
   components: {
