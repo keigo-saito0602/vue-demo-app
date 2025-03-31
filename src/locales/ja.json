@@ -11,7 +11,7 @@
       "link": "https://v2.vuejs.org/"
     },
     "start": {
-      "title": "🎨 Vue Demo App<",
+      "title": "🎨 Vue Demo App",
       "navigate": {
         "home": "ホーム",
         "prop_emit": "PropEmit",

@@ -44,6 +44,9 @@ export default {
   methods: {
     onSave() {
       this.showChild = this.toggle;
+      if (this.showChild === false) {
+        this.message = "";
+      }
     },
     switchToDetails() {
       this.mode = "details";

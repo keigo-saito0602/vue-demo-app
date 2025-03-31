@@ -47,7 +47,7 @@ export default {
 }
 
 .header-actions button {
-  background-color: var(--vue-green-bright);
+  background-color: var(--white);
   color: var(--black);
   font-weight: bold;
   border: none;
@@ -58,6 +58,7 @@ export default {
 }
 
 .header-actions button:hover {
-  background-color: var(--vue-green-bright);
+  background-color: var(--vue-dark);
+  color: var(--white);
 }
 </style>
