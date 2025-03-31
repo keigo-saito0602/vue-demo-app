@@ -55,7 +55,6 @@ export default {
     onEmployeeCodeSubmitted(employeeCode, isSubscribed) {
       this.employeeCode = employeeCode;
       this.isSubscribed = isSubscribed;
-      console.log("isSubscribed",this.isSubscribed)
     },
     onGenderUpdated(gender) {
       this.gender = gender;
