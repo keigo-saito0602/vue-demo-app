@@ -16,7 +16,7 @@
     <div class="form-card">
       <div v-if="showChild">
         <EditComponent
-          v-if="mode === 'edit'"
+          v-if="mode === 'edit' || message === ''"
           :message="message"
           @save="switchToDetails"
           @update-message="updateMessage"
@@ -36,8 +36,8 @@ export default {
   components: {
     EditComponent,
     DetailsComponent,
-     DemoAppCheckbox, 
-     DemoAppButton,
+    DemoAppCheckbox, 
+    DemoAppButton,
   },
   data() {
     return {
@@ -52,6 +52,7 @@ export default {
       this.showChild = this.toggle;
       if (this.showChild === false) {
         this.message = "";
+        this.mode = "edit";
       }
     },
     switchToDetails() {
