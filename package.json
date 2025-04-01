@@ -16,7 +16,8 @@
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.5.1",
     "vuetify": "^2.6.0",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -32,7 +33,10 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^8.0.3",
+    "prettier": "^2.8.8",
     "sass": "~1.32.0",
     "sass-loader": "^10.5.2",
     "ts-loader": "^9.5.2",
@@ -49,10 +53,13 @@
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended",
-      "@vue/typescript"
+      "@vue/typescript",
+      "@vue/typescript/recommended",
+      "plugin:prettier/recommended"
     ],
     "parserOptions": {
-      "parser": "@typescript-eslint/parser"
+      "parser": "@typescript-eslint/parser",
+      "ecmaVersion": 2020
     },
     "rules": {}
   },
