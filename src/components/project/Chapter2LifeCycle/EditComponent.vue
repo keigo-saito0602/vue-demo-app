@@ -2,18 +2,27 @@
   <div class="form-card">
     <h2>{{ $t("app.lifeCycle.editTitle") }}</h2>
     <p>{{ $t("app.lifeCycle.editMessage") }}</p>
-    <input
+    <DemoAppTextField
       :value="message"
-      @input="$emit('update-message', $event.target.value)"
+      @input="$emit('update-message', $event)"
       :placeholder="$t('app.lifeCycle.inputPlaceholder')"
     />
     <p>{{ $t("app.lifeCycle.inputted") }}: {{ message }}</p>
-    <button @click="handleSave">{{ $t("app.common.save") }}</button>
+    <DemoAppButton
+      @click="handleSave"
+      :label="$t('app.common.save')"
+    />
   </div>
 </template>
 
 <script>
+import DemoAppTextField from "@/components/parts/DemoAppTextField.vue";
+import DemoAppButton from "@/components/parts/DemoAppButton.vue"; 
 export default {
+  components: {
+    DemoAppTextField,
+    DemoAppButton,
+  },
   props: {
     message: {
       type: String,

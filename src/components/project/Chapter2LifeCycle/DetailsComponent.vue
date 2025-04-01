@@ -2,7 +2,11 @@
   <div class="form-card">
     <div class="card-header">
       <h2>{{ $t("app.lifeCycle.detailsTitle") }}</h2>
-      <button @click="$emit('edit')">{{ $t("app.common.edit") }}</button>
+      <DemoAppButton
+        @click="$emit('edit')"
+        :label="$t('app.common.edit')"
+        variant="outline"  
+      />
     </div>
     <p>{{ $t("app.lifeCycle.detailsMessage") }}</p>
     <p>{{ $t("app.lifeCycle.inputted") }}: {{ message }}</p>
@@ -10,7 +14,12 @@
 </template>
 
 <script>
+import DemoAppButton from "@/components/parts/DemoAppButton.vue";
+
 export default {
+  components: {
+    DemoAppButton,
+  },
   props: {
     message: {
       type: String,
