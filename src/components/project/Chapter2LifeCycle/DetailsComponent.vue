@@ -1,49 +1,59 @@
 <template>
-  <div class="form-card">
-    <div class="card-header">
-      <h2>{{ $t("app.lifeCycle.detailsTitle") }}</h2>
-      <button @click="$emit('edit')">{{ $t("app.common.edit") }}</button>
+  <div>
+    <div class="d-flex justify-space-between align-center mb-4">
+      <h2 class="text-h6 font-weight-bold">
+        {{ $t("app.lifeCycle.detailsTitle") }}
+      </h2>
+      <DemoAppButton
+        text
+        color="primary"
+        @click="$emit('edit')"
+        :label="message ? $t('app.common.edit') : $t('app.common.register')"
+      />
     </div>
-    <p>{{ $t("app.lifeCycle.detailsMessage") }}</p>
-    <p>{{ $t("app.lifeCycle.inputted") }}: {{ message }}</p>
+
+    <div v-if="message">
+      <p class="text-body-2 mb-2">{{ $t("app.lifeCycle.detailsMessage") }}</p>
+      <p class="text-body-2 font-weight-medium">
+        {{ $t("app.lifeCycle.inputted") }}: {{ message }}
+      </p>
+    </div>
+
+    <div v-else>
+      <p class="text-caption text-error">
+        {{ $t("app.common.notUse") }}
+      </p>
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    message: {
-      type: String,
-      default: "",
-    },
-  },
-  created() {
-    console.log(this.$t("app.lifeCycle.details"));
-    console.log(this.$t("app.lifeCycle.created"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
-  mounted() {
-    console.log(this.$t("app.lifeCycle.details"));
-    console.log(this.$t("app.lifeCycle.mounted"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
-  updated() {
-    console.log(this.$t("app.lifeCycle.details"));
-    console.log(this.$t("app.lifeCycle.updated"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
-  destroyed() {
-    console.log(this.$t("app.lifeCycle.details"));
-    console.log(this.$t("app.lifeCycle.destroyed"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
-};
-</script>
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import DemoAppButton from "@/components/parts/DemoAppButton.vue";
 
-<style scoped>
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@Component({
+  components: { DemoAppButton },
+})
+export default class DetailsComponent extends Vue {
+  @Prop({ default: "" }) message!: string;
+
+  created() {
+    this.log("created");
+  }
+  mounted() {
+    this.log("mounted");
+  }
+  updated() {
+    this.log("updated");
+  }
+  destroyed() {
+    this.log("destroyed");
+  }
+
+  log(lifecycle: string) {
+    console.log(this.$t("app.lifeCycle.details"));
+    console.log(this.$t(`app.lifeCycle.${lifecycle}`));
+    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
+  }
 }
-</style>
+</script>

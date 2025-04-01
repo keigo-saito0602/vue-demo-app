@@ -1,4 +1,5 @@
 @import "./color";
+@import "./utilities";
 
 body {
   font-family: "Segoe UI", Roboto, sans-serif;
@@ -13,36 +14,36 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.v-app-bar {
+  padding: 0 16px;
+  font-size: 0.95rem;
+  box-shadow: none;
+}
+
+.v-app-bar .v-btn {
+  margin-left: 8px;
+}
+
+.v-footer {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-primary-light);
+  color: var(--color-gray);
+  font-size: 0.9rem;
+  padding: 16px 0;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }
 
 .main-content {
-  flex: 1;
   background-color: var(--color-white);
-  padding: 40px 200px;
+  padding: 40px 32px;
   margin: 40px auto;
   border-radius: 30px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-  width: 90%;
   max-width: 600px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="number"],
-select {
-  padding: 10px 14px;
-  font-size: 16px;
-  border: 1px solid var(--color-primary);
-  border-radius: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-button,
-.v-btn {
-  font-family: inherit;
-  text-transform: none;
-  border-radius: 8px;
-  font-weight: 500;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }

@@ -1,34 +1,16 @@
 <template>
-  <div class="checkbox-display">
-    <p>{{ isChecked ? checkedText : uncheckedText }}</p>
+  <div class="text-caption font-weight-medium text-primary mt-2">
+    {{ isChecked ? checkedText : uncheckedText }}
   </div>
 </template>
 
-<script>
-export default {
-  name: "DemoAppCheckboxDisplay",
-  props: {
-    isChecked: {
-      type: Boolean,
-      required: true,
-    },
-    checkedText: {
-      type: String,
-      default: "",
-    },
-    uncheckedText: {
-      type: String,
-      default: "",
-    },
-  },
-};
-</script>
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-<style scoped>
-.checkbox-display p {
-  font-size: 14px;
-  color: var(--vue-green);
-  font-weight: 500;
-  margin-top: 6px;
+@Component
+export default class DemoAppBooleanDisplay extends Vue {
+  @Prop({ required: true }) isChecked!: boolean;
+  @Prop({ default: "" }) checkedText!: string;
+  @Prop({ default: "" }) uncheckedText!: string;
 }
-</style>
+</script>

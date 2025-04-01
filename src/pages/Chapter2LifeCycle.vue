@@ -1,62 +1,26 @@
 <template>
-  <div class="page-container">
-    <h1 class="page-title">{{ $t("app.lifeCycle.title") }}</h1>
-
-    <div class="form-card">
-      <label>
-        <input type="checkbox" v-model="toggle" />
-        {{ $t("app.lifeCycle.enableChild") }}
-      </label>
-      <button @click="onSave">{{ $t("app.common.save") }}</button>
-    </div>
-
-    <div class="form-card">
-      <div v-if="showChild">
-        <EditComponent
-          v-if="mode === 'edit'"
-          :message="message"
-          @save="switchToDetails"
-          @update-message="updateMessage"
-        />
-        <DetailsComponent v-else :message="message" @edit="switchToEdit" />
-      </div>
-    </div>
-  </div>
+  <v-container class="py-6">
+    <v-row justify="center">
+      <v-col cols="12" md="8" lg="6">
+        <h1 class="text-h5 font-weight-bold text-primary text-center mb-6">
+          {{ $t("app.lifeCycle.title") }}
+        </h1>
+        <v-card class="pa-4 mb-6" elevation="1">
+          <IndexComponent />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<script>
-import EditComponent from "@/components/project/Chapter2LifeCycle/EditComponent.vue";
-import DetailsComponent from "@/components/project/Chapter2LifeCycle/DetailsComponent.vue";
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import IndexComponent from "@/components/project/Chapter2LifeCycle/IndexComponent.vue";
 
-export default {
+@Component({
   components: {
-    EditComponent,
-    DetailsComponent,
+    IndexComponent,
   },
-  data() {
-    return {
-      toggle: false,
-      showChild: false,
-      mode: "edit",
-      message: "",
-    };
-  },
-  methods: {
-    onSave() {
-      this.showChild = this.toggle;
-      if (this.showChild === false) {
-        this.message = "";
-      }
-    },
-    switchToDetails() {
-      this.mode = "details";
-    },
-    switchToEdit() {
-      this.mode = "edit";
-    },
-    updateMessage(newMessage) {
-      this.message = newMessage;
-    },
-  },
-};
+})
+export default class Chapter2LifeCycle extends Vue {}
 </script>
