@@ -3,6 +3,7 @@ import App from "./App.vue";
 import VueI18n from "vue-i18n";
 import "./assets/styles/global.css"; // グローバルCSS
 import router from './router'
+import store from './store'
 
 // 言語の設定
 Vue.use(VueI18n);
@@ -21,5 +22,6 @@ Vue.config.productionTip = false;
 new Vue({
   i18n,
   router,
+  store,
   render: (h) => h(App)
 }).$mount("#app");
