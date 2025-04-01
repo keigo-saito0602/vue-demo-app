@@ -1,21 +1,12 @@
-:root {
-  --vue-green: #42b883;
-  --vue-green-bright: #c1d1ca;
-  --vue-dark: #35495e;
-  --vue-light-bg: #f5f7f9;
-  --black: #000;
-  --dark-gray: #333;
-  --middle-gray: #777;
-  --white: #ffffff;
-  --error: #ff0000;
-}
+@import "./color";
 
 body {
   font-family: "Segoe UI", Roboto, sans-serif;
-  background-color: var(--vue-light-bg);
+  background-color: var(--color-background);
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  color: var(--color-dark);
 }
 
 #app {
@@ -26,7 +17,7 @@ body {
 
 .main-content {
   flex: 1;
-  background-color: var(--white);
+  background-color: var(--color-white);
   padding: 40px 200px;
   margin: 40px auto;
   border-radius: 30px;
@@ -35,15 +26,23 @@ body {
   max-width: 600px;
 }
 
-/* Vueグリーンに寄せたフォームスタイル */
 input[type="text"],
 input[type="email"],
 input[type="number"],
 select {
   padding: 10px 14px;
   font-size: 16px;
-  border: 1px solid var(--vue-green);
+  border: 1px solid var(--color-primary);
   border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
+  font-family: inherit;
+}
+
+button,
+.v-btn {
+  font-family: inherit;
+  text-transform: none;
+  border-radius: 8px;
+  font-weight: 500;
 }

@@ -1,52 +1,47 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+  <div id="app">
+    <AppHeader @navigate="handleNavigation" />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+    <main class="main-content">
+      <div v-if="currentPage === 'start'">
+        <StartPage />
       </div>
+      <div v-else-if="currentPage === 'prop-emit'">
+        <PropEmitCurriculum />
+      </div>
+      <div v-else-if="currentPage === 'lifecycle'">
+        <LifeCycle />
+      </div>
+    </main>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+    <AppFooter />
+  </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
+import AppHeader from "./components/layout/DemoAppHeader.vue";
+import AppFooter from "./components/layout/DemoAppFooter.vue";
+import PropEmitCurriculum from "./pages/Chapter1PropEmit.vue";
+import LifeCycle from "./pages/Chapter2LifeCycle.vue";
+import StartPage from "./pages/StartPage.vue";
 
-export default Vue.extend({
-  name: "App",
-
-  data: () => ({
-    //
-  }),
-});
+export default {
+  components: {
+    AppHeader,
+    AppFooter,
+    PropEmitCurriculum,
+    LifeCycle,
+    StartPage,
+  },
+  data() {
+    return {
+      currentPage: "start",
+    };
+  },
+  methods: {
+    handleNavigation(pageName) {
+      this.currentPage = pageName;
+    },
+  },
+};
 </script>
