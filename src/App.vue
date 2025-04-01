@@ -1,47 +1,29 @@
 <template>
   <div id="app">
-    <AppHeader @navigate="handleNavigation" />
-
-    <main class="main-content">
-      <div v-if="currentPage === 'start'">
-        <StartPage />
-      </div>
-      <div v-else-if="currentPage === 'prop-emit'">
-        <PropEmitCurriculum />
-      </div>
-      <div v-else-if="currentPage === 'lifecycle'">
-        <LifeCycle />
-      </div>
-    </main>
-
-    <AppFooter />
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
 </template>
 
-<script>
-import AppHeader from "./components/layout/DemoAppHeader.vue";
-import AppFooter from "./components/layout/DemoAppFooter.vue";
-import PropEmitCurriculum from "./pages/Chapter1PropEmit.vue";
-import LifeCycle from "./pages/Chapter2LifeCycle.vue";
-import StartPage from "./pages/StartPage.vue";
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import HelloWorld from './components/HelloWorld.vue';
 
-export default {
+@Component({
   components: {
-    AppHeader,
-    AppFooter,
-    PropEmitCurriculum,
-    LifeCycle,
-    StartPage,
+    HelloWorld,
   },
-  data() {
-    return {
-      currentPage: "start",
-    };
-  },
-  methods: {
-    handleNavigation(pageName) {
-      this.currentPage = pageName;
-    },
-  },
-};
+})
+export default class App extends Vue {}
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
