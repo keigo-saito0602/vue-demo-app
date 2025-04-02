@@ -16,7 +16,7 @@
     <div class="form-card">
       <div v-if="showChild">
         <EditComponent
-          v-if="mode === 'edit' || message === ''"
+          v-if="mode === 'edit'"
           :message="message"
           @save="switchToDetails"
           @update-message="updateMessage"
