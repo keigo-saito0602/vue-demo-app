@@ -9,12 +9,14 @@
     outlined
     dense
     :hide-details="false"
-    @input="$emit('input', $event)"
+    @input="handleInput"
   />
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
+
+type ValidationRule = (v: string) => true | string;
 
 @Component
 export default class DemoAppTextField extends Vue {
@@ -22,9 +24,10 @@ export default class DemoAppTextField extends Vue {
   @Prop({ default: "" }) label!: string;
   @Prop({ default: "" }) placeholder!: string;
   @Prop({ default: false }) disabled!: boolean;
+  @Prop({ type: Array, default: () => [] }) rules!: ValidationRule[];
 
-  @Prop({ type: Array, default: () => [] }) rules!: ((
-    v: any
-  ) => true | string)[];
+  handleInput(val: string): void {
+    this.$emit("input", val);
+  }
 }
 </script>

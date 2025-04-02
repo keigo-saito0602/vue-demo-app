@@ -4,7 +4,7 @@
     <DemoAppTextField
       v-model="inputUsername"
       :label="$t('app.prop_emit.user.title')"
-      :placeholder="$t('app.prop_emit.employee.username')"
+      :placeholder="$t('app.prop_emit.user.placeholder')"
       :rules="usernameRules"
     />
 
