@@ -6,9 +6,10 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :rules="rules"
+    :error-messages="errorMessages"
     outlined
     dense
-    :hide-details="false"
+    hide-details="auto"
     @input="handleInput"
   />
 </template>
@@ -25,6 +26,7 @@ export default class DemoAppTextField extends Vue {
   @Prop({ default: "" }) placeholder!: string;
   @Prop({ default: false }) disabled!: boolean;
   @Prop({ type: Array, default: () => [] }) rules!: ValidationRule[];
+  @Prop({ type: Array, default: () => [] }) errorMessages!: string[];
 
   handleInput(val: string): void {
     this.$emit("input", val);

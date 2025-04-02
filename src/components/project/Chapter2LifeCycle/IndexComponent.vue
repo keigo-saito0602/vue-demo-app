@@ -3,6 +3,7 @@
     <EditComponent
       v-if="mode === 'edit'"
       :message="message"
+      :is-used.sync="isUsed"
       @update-message="updateMessage"
       @save="switchToDetails"
       @cancel="switchToDetails"
@@ -30,6 +31,7 @@ export default class IndexComponent extends Vue {
   toggle = false;
   mode: "edit" | "details" = "edit";
   message = "";
+  isUsed = false;
 
   switchToDetails(): void {
     this.mode = "details";

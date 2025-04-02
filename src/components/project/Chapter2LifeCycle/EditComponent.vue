@@ -8,7 +8,8 @@
     </p>
 
     <DemoAppBooleanSwitch
-      v-model="isUsed"
+      :value="isUsed"
+      @input="$emit('update:isUsed', $event)"
       :label-on="$t('app.common.use')"
       :label-off="$t('app.common.notUse')"
       class="mb-4"
@@ -18,6 +19,8 @@
       v-if="isUsed"
       :value="message"
       :placeholder="$t('app.lifeCycle.inputPlaceholder')"
+      :rules="rules"
+      :error-messages="errorMessages"
       @input="$emit('update-message', $event)"
       class="mb-2"
     />
@@ -56,14 +59,29 @@ import DemoAppBooleanSwitch from "@/components/parts/DemoAppToggleSwitch.vue";
 })
 export default class EditComponent extends Vue {
   @Prop({ default: "" }) message!: string;
+  @Prop({ default: false }) isUsed!: boolean;
+  errorMessages: string[] = [];
 
-  isUsed = false;
+  get rules() {
+    return [this.requiredRule("error.empty_username")];
+  }
+
+  requiredRule(messageKey: string) {
+    return (v: string) => !!v?.trim() || this.$t(messageKey);
+  }
 
   @Emit("save")
   handleSave(): void {
-    if (!this.isUsed) {
-      this.$emit("update-message", ""); // 利用しない時は空にする
+    if (this.isUsed && !this.message.trim()) {
+      this.errorMessages = [this.$t("error.empty_username") as string];
+      return;
     }
+
+    if (!this.isUsed) {
+      this.$emit("update-message", "");
+    }
+
+    this.errorMessages = [];
   }
 
   handleCancel(): void {
