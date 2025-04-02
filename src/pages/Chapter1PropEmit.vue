@@ -1,108 +1,73 @@
 <template>
-  <div class="page-container">
-    <h1 class="page-title">Prop Emit</h1>
+  <v-container class="py-6">
+    <v-row justify="center">
+      <v-col cols="12" md="8" lg="6">
+        <!-- タイトル -->
+        <h1 class="text-h5 font-weight-bold text-primary text-center mb-6">
+          Prop Emit
+        </h1>
 
-    <div class="card-container">
-      <div class="form-card">
-        <UserNameInput @username-submitted="onUsernameSubmitted" />
-        <UserNameDisplay :username="username" :is-subscribed="isSubscribed" />
-      </div>
+        <!-- 名前入力 -->
+        <v-card class="pa-4 mb-6" elevation="1">
+          <UserNameInput @username-submitted="onUsernameSubmitted" />
+          <UserNameDisplay :username="username" :isSubscribed="isSubscribed" />
+        </v-card>
+        <!-- 性別選択 -->
+        <v-card class="pa-4 mb-6" elevation="1">
+          <UserGenderDisplay @update-gender="onGenderUpdated" />
+        </v-card>
 
-      <div class="form-card">
-        <UserGenderDisplay @update-gender="onGenderUpdated" />
-      </div>
-
-      <div class="form-card">
-        <EmployeeCodeInput @employee-code-submitted="onEmployeeCodeSubmitted" />
-        <EmployeeCodeDisplay
-          :employeeCode="employeeCode"
-          :isSubscribed="isEmployeeSubscribed"
-        />
-      </div>
-    </div>
-  </div>
+        <!-- 社員コード入力 -->
+        <v-card class="pa-4" elevation="1">
+          <EmployeeCodeInput
+            @employee-code-submitted="onEmployeeCodeSubmitted"
+          />
+          <EmployeeCodeDisplay
+            :employeeCode="employeeCode"
+            :isSubscribed="isEmployeeSubscribed"
+          />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import UserNameInput from "@/components/project/Chapter1PropEmit/UserNameInput.vue";
 import UserNameDisplay from "@/components/project/Chapter1PropEmit/UserNameDisplay.vue";
+import UserGenderDisplay from "@/components/project/Chapter1PropEmit/UserGenderDisplay.vue";
 import EmployeeCodeInput from "@/components/project/Chapter1PropEmit/EmployeeCodeInput.vue";
 import EmployeeCodeDisplay from "@/components/project/Chapter1PropEmit/EmployeeCodeDisplay.vue";
-import UserGenderDisplay from "@/components/project/Chapter1PropEmit/UserGenderDisplay.vue";
 
-export default {
+@Component({
   components: {
     UserNameInput,
     UserNameDisplay,
+    UserGenderDisplay,
     EmployeeCodeInput,
     EmployeeCodeDisplay,
-    UserGenderDisplay,
   },
-  data() {
-    return {
-      username: "",
-      isSubscribed: false,
-      employeeCode: "",
-      termsOfUse: false,
-      gender: "",
+})
+export default class Chapter1PropEmit extends Vue {
+  username = "";
+  isSubscribed = false;
+  employeeCode = "";
+  isEmployeeSubscribed = false;
+  gender = "";
 
-      isUserSubscribed: false,
-      isEmployeeSubscribed: false,
-    };
-  },
-  methods: {
-    onUsernameSubmitted(username, isSubscribed) {
-      this.username = username;
-      this.isSubscribed = isSubscribed;
-    },
-    onEmployeeCodeSubmitted(employeeCode, isSubscribed) {
-      this.employeeCode = employeeCode;
-      this.isEmployeeSubscribed = isSubscribed;
-    },
-    onGenderUpdated(gender) {
-      this.gender = gender;
-    },
-  },
-};
-</script>
+  onUsernameSubmitted(username: string, isSubscribed: boolean): void {
+    this.username = username;
+    this.isSubscribed = isSubscribed;
+  }
 
-<style scoped>
-.page-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 32px 16px;
-}
+  onEmployeeCodeSubmitted(employeeCode: string, isSubscribed: boolean): void {
+    this.employeeCode = employeeCode;
+    this.isEmployeeSubscribed = isSubscribed;
+  }
 
-.page-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 32px;
-  color: var(--vue-dark);
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: flex-start;
-}
-
-.form-card {
-  flex: 1 1 45%;
-  min-width: 300px;
-  background-color: var(--white);
-  border: 1px solid var(--vue-light-bg);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-@media (max-width: 768px) {
-  .form-card {
-    flex: 1 1 100%;
+  onGenderUpdated(gender: string): void {
+    this.gender = gender;
   }
 }
-</style>
+</script>

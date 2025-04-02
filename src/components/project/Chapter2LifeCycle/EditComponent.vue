@@ -1,49 +1,92 @@
 <template>
-  <div class="form-card">
-    <h2>{{ $t("app.lifeCycle.editTitle") }}</h2>
-    <p>{{ $t("app.lifeCycle.editMessage") }}</p>
-    <input
-      :value="message"
-      @input="$emit('update-message', $event.target.value)"
-      :placeholder="$t('app.lifeCycle.inputPlaceholder')"
+  <div>
+    <h2 class="text-h6 font-weight-bold mb-2">
+      {{ $t("app.lifeCycle.editTitle") }}
+    </h2>
+    <p class="text-body-2 mb-4">
+      {{ $t("app.lifeCycle.editMessage") }}
+    </p>
+
+    <DemoAppBooleanSwitch
+      v-model="isUsed"
+      :label-on="$t('app.common.use')"
+      :label-off="$t('app.common.notUse')"
+      class="mb-4"
     />
-    <p>{{ $t("app.lifeCycle.inputted") }}: {{ message }}</p>
-    <button @click="handleSave">{{ $t("app.common.save") }}</button>
+
+    <DemoAppTextField
+      v-if="isUsed"
+      :value="message"
+      :placeholder="$t('app.lifeCycle.inputPlaceholder')"
+      @input="$emit('update-message', $event)"
+      class="mb-2"
+    />
+
+    <p v-if="isUsed" class="text-body-2 mb-4">
+      {{ $t("app.lifeCycle.inputted") }}: {{ message }}
+    </p>
+
+    <div class="d-flex justify-end gap-4 mt-4">
+      <DemoAppButton
+        :label="$t('app.common.cancel')"
+        variant="outline"
+        @click="handleCancel"
+      />
+      <DemoAppButton
+        :label="$t('app.common.save')"
+        color="primary"
+        @click="handleSave"
+      />
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    message: {
-      type: String,
-      default: "",
-    },
+<script lang="ts">
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import DemoAppButton from "@/components/parts/DemoAppButton.vue";
+import DemoAppTextField from "@/components/parts/DemoAppTextField.vue";
+import DemoAppBooleanSwitch from "@/components/parts/DemoAppToggleSwitch.vue";
+
+@Component({
+  components: {
+    DemoAppButton,
+    DemoAppTextField,
+    DemoAppBooleanSwitch,
   },
-  methods: {
-    handleSave() {
-      this.$emit("save");
-    },
-  },
+})
+export default class EditComponent extends Vue {
+  @Prop({ default: "" }) message!: string;
+
+  isUsed = false;
+
+  @Emit("save")
+  handleSave(): void {
+    if (!this.isUsed) {
+      this.$emit("update-message", ""); // 利用しない時は空にする
+    }
+  }
+
+  handleCancel(): void {
+    this.$emit("cancel");
+  }
+
   created() {
-    console.log(this.$t("app.lifeCycle.edit"));
-    console.log(this.$t("app.lifeCycle.created"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
+    this.log("created");
+  }
   mounted() {
-    console.log(this.$t("app.lifeCycle.edit"));
-    console.log(this.$t("app.lifeCycle.mounted"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
+    this.log("mounted");
+  }
   updated() {
-    console.log(this.$t("app.lifeCycle.edit"));
-    console.log(this.$t("app.lifeCycle.updated"));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
+    this.log("updated");
+  }
   destroyed() {
+    this.log("destroyed");
+  }
+
+  log(lifecycle: string) {
     console.log(this.$t("app.lifeCycle.edit"));
-    console.log(this.$t("app.lifeCycle.destroyed"));
+    console.log(this.$t(`app.lifeCycle.${lifecycle}`));
     console.log(this.$t("app.lifeCycle.input", { message: this.message }));
-  },
-};
+  }
+}
 </script>

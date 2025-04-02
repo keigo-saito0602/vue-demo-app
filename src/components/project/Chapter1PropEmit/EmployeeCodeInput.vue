@@ -1,13 +1,10 @@
 <template>
-  <div class="form-group">
-    <label for="employee-code">{{
-      $t("app.prop_emit.employee.navigate")
-    }}</label>
-    <input
-      class="form-input"
-      type="text"
-      id="employee-code"
+  <div class="d-flex flex-column gap-4">
+    <DemoAppTextField
       v-model="inputEmployeeCode"
+      :label="$t('app.prop_emit.employee.navigate')"
+      :placeholder="$t('app.prop_emit.employee.placeholder')"
+      :rules="employeeCodeRules"
     />
 
     <DemoAppCheckbox
@@ -15,36 +12,39 @@
       :label="$t('app.prop_emit.employee.checkbox.title')"
     />
 
-    <DemoAppButton @click="submitEmployeeCode" :label="$t('button.submit')" />
-
-    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <DemoAppButton
+      :label="$t('button.submit')"
+      :loading="loading"
+      @click="submitEmployeeCode"
+    />
   </div>
 </template>
 
-<script>
-import { Component, Vue } from "vue-property-decorator";
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
 import DemoAppButton from "@/components/parts/DemoAppButton.vue";
 import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
+import DemoAppTextField from "@/components/parts/DemoAppTextField.vue";
+import { requiredRule } from "@/utils/validationRules";
 
 @Component({
   name: "EmployeeCodeInput",
   components: {
     DemoAppButton,
     DemoAppCheckbox,
+    DemoAppTextField,
   },
 })
 export default class EmployeeCodeInput extends Vue {
   inputEmployeeCode = "";
   isSubscribed = false;
-  errorMessage = "";
   loading = false;
 
-  submitEmployeeCode() {
-    if (this.inputEmployeeCode.trim() === "") {
-      this.errorMessage = this.$t("error.empty_employee_code");
-      return;
-    }
-    this.errorMessage = "";
+  get employeeCodeRules() {
+    return [requiredRule("error.empty_employee_code")];
+  }
+
+  submitEmployeeCode(): void {
     this.$emit(
       "employee-code-submitted",
       this.inputEmployeeCode,
@@ -53,28 +53,3 @@ export default class EmployeeCodeInput extends Vue {
   }
 }
 </script>
-
-<style scoped>
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 160px;
-}
-
-.form-input {
-  padding: 10px 14px;
-  font-size: 16px;
-  border: 1px solid var(--vue-green);
-  border-radius: 8px;
-}
-
-.checkbox-group {
-  margin-top: 8px;
-}
-
-.error-message {
-  color: var(--error);
-  font-size: 14px;
-}
-</style>

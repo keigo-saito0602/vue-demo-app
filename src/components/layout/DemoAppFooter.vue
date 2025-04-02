@@ -1,25 +1,17 @@
 <template>
-  <footer class="app-footer">
-    <p>{{ $t("app.footer.title") }}</p>
-    <a>{{ $t("app.footer.link") }}</a>
-  </footer>
+  <v-footer color="white" padless class="text-center">
+    <v-col cols="12" class="py-4">
+      <p class="mb-1">{{ $t("app.footer.title") }}</p>
+      <a href="#" class="text-caption text--secondary">
+        {{ $t("app.footer.link") }}
+      </a>
+    </v-col>
+  </v-footer>
 </template>
 
-<script>
-export default {
-  name: "AppFooter",
-};
-</script>
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
 
-<style scoped>
-.app-footer {
-  background-color: var(--white);
-  padding: 12px;
-  text-align: center;
-  color: var(--middle-gray);
-  font-size: 0.9em;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  margin-top: 30px;
-}
-</style>
+@Component
+export default class AppFooter extends Vue {}
+</script>

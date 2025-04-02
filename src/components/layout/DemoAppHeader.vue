@@ -1,59 +1,51 @@
 <template>
-  <header class="app-header">
-    <h1 class="title">{{ $t("app.start.title") }}</h1>
-    <div class="header-actions">
-      <button @click="$emit('navigate', 'start')">
-        {{ $t("app.start.navigate.home") }}
-      </button>
-      <button @click="$emit('navigate', 'prop-emit')">
-        {{ $t("app.start.navigate.prop_emit") }}
-      </button>
-      <button @click="$emit('navigate', 'lifecycle')">
-        {{ $t("app.start.navigate.life_cycle") }}
-      </button>
+  <v-app-bar color="primary" dense dark app>
+    <v-toolbar-title>{{ $t("app.start.title") }}</v-toolbar-title>
+    <v-spacer />
+    <div class="d-flex align-center ga-2">
+      <v-btn
+        v-for="item in navItems"
+        :key="item.name"
+        text
+        color="white"
+        @click="$emit('navigate', item.route)"
+      >
+        {{ $t(item.label) }}
+      </v-btn>
     </div>
-  </header>
+  </v-app-bar>
 </template>
 
-<script>
-export default {
-  name: "AppHeader",
-};
+<script lang="ts">
+import { Vue, Component, Emit } from "vue-property-decorator";
+
+interface NavItem {
+  name: string;
+  label: string;
+  route: string;
+}
+
+@Component
+export default class AppHeader extends Vue {
+  get navItems(): NavItem[] {
+    return [
+      { name: "home", label: "app.start.navigate.home", route: "start" },
+      {
+        name: "prop-emit",
+        label: "app.start.navigate.prop_emit",
+        route: "prop-emit",
+      },
+      {
+        name: "lifecycle",
+        label: "app.start.navigate.life_cycle",
+        route: "lifecycle",
+      },
+    ];
+  }
+
+  @Emit("navigate")
+  navigateTo(routeName: string): string {
+    return routeName;
+  }
+}
 </script>
-
-<style scoped>
-.app-header {
-  background-color: var(--vue-green);
-  color: var(--white);
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title {
-  margin: 0;
-  font-size: 1.6em;
-}
-
-.header-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.header-actions button {
-  background-color: var(--white);
-  color: var(--black);
-  font-weight: bold;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.header-actions button:hover {
-  background-color: var(--vue-dark);
-  color: var(--white);
-}
-</style>

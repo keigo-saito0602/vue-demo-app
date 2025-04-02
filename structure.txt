@@ -1,0 +1,43 @@
+.
+├── README.md
+├── babel.config.js
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   └── index.html
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   ├── logo.png
+│   │   ├── logo.svg
+│   │   └── styles
+│   ├── components
+│   │   ├── layout
+│   │   ├── parts
+│   │   └── project
+│   ├── constants
+│   │   └── colors.ts
+│   ├── locales
+│   │   ├── en.json
+│   │   └── ja.json
+│   ├── main.ts
+│   ├── pages
+│   │   ├── Chapter1PropEmit.vue
+│   │   ├── Chapter2LifeCycle.vue
+│   │   └── StartPage.vue
+│   ├── plugins
+│   │   └── vuetify.ts
+│   ├── router
+│   │   └── index.ts
+│   ├── shims-vue.d.ts
+│   ├── shims-vuetify.d.ts
+│   ├── store
+│   │   └── index.ts
+│   ├── views
+│   └── vue-shims.d.ts
+├── structure.txt
+├── tsconfig.json
+└── vue.config.js
+
+16 directories, 25 files
