@@ -2,11 +2,14 @@
   <label class="text-field-wrapper">
     <span class="text-field-label" v-if="label">{{ label }}</span>
     <input
-      type="text"
+      :type="type"
       :value="value"
       :placeholder="placeholder"
       :disabled="disabled"
       @input="$emit('input', $event.target.value)"
+
+      :min="min"       
+      :max="max"
     />
   </label>
 </template>
@@ -16,7 +19,7 @@ export default {
   name: "DemoAppTextField",
   props: {
     value: {
-      type: String,
+      type: [String, Number], 
       required: true,
     },
     label: {
@@ -31,6 +34,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {  
+      type: String,
+      default: 'text',
+      validator: (value) => { 
+        return ['text', 'number', 'password', 'email', 'tel', 'url'].includes(value);
+      }
+  },
+    min: {
+      type: [String, Number],
+      default: undefined
+    },
+    max: {
+      type: [String, Number],
+      default: undefined
+    }
   },
 };
 </script>
@@ -48,7 +66,8 @@ export default {
   color: var(--vue-dark);
 }
 
-.text-field-wrapper input[type="text"] {
+.text-field-wrapper input[type="text"],
+.text-field-wrapper input[type="number"] {
   padding: 8px 12px;
   border: 1px solid var(--vue-light-bg);
   border-radius: 6px;
@@ -57,11 +76,13 @@ export default {
   transition: border-color 0.2s;
 }
 
-.text-field-wrapper input[type="text"]:focus {
+.text-field-wrapper input[type="text"]:focus,
+.text-field-wrapper input[type="number"]:focus {
   border-color: var(--vue-green);
 }
 
-.text-field-wrapper input[type="text"]:disabled {
+.text-field-wrapper input[type="text"]:disabled,
+.text-field-wrapper input[type="number"]:disabled {
   background-color: #f3f4f6;
   cursor: not-allowed;
 }

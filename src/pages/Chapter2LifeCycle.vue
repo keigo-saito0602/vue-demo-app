@@ -19,7 +19,7 @@
         @change="resetTimerStateIfHidden"
       />
     </div>
-    <div class="form-card"> 
+    <div class="form-card">
       <div v-if="showChild">
         <EditComponent
           v-if="mode === 'edit'"
@@ -29,18 +29,22 @@
         />
         <DetailsComponent v-else :message="message" @edit="switchToEdit" />
       </div>
-    </div> 
+    </div>
 
     <div v-if="showTimer">
       <TimerEditComponent
         v-if="timerMode === 'edit'"
         @save="handleTimerSave"
         :initialTimerName="savedTimerName"
+        :initialDurationSeconds="savedTimerDuration" 
       />
       <TimerDetailsComponent
         v-else
         :timerName="savedTimerName"
+        :initialDurationSeconds="savedTimerDuration"
+        :isRunning="isTimerRunning"             
         @edit="handleTimerEdit"
+        @finished="handleTimerFinished"         
       />
     </div>
   </div>
@@ -59,7 +63,7 @@ export default {
   components: {
     EditComponent,
     DetailsComponent,
-    DemoAppCheckbox, 
+    DemoAppCheckbox,
     DemoAppButton,
     TimerEditComponent,
     TimerDetailsComponent,
@@ -70,9 +74,12 @@ export default {
       showChild: false,
       mode: "edit",
       message: "",
+
       showTimer: false,
-      timerMode: 'edit',  
-      savedTimerName: '', 
+      timerMode: 'edit',
+      savedTimerName: '',
+      savedTimerDuration: 0, 
+      isTimerRunning: false,  
     };
   },
    methods: {
@@ -92,25 +99,38 @@ export default {
     updateMessage(newMessage) {
       this.message = newMessage;
     },
-    handleTimerSave(name) {
-      console.log('[ParentComponent] Received save event from TimerEditComponent:', name);
+
+
+    handleTimerSave(name, durationSeconds) { 
+      console.log('[ParentComponent] Received save event:', { name, durationSeconds });
       this.savedTimerName = name;
-      this.timerMode = 'details'; 
+      this.savedTimerDuration = durationSeconds; 
+      this.isTimerRunning = true;             
+      this.timerMode = 'details';             
     },
     handleTimerEdit() {
       console.log('[ParentComponent] Received edit event from TimerDetailsComponent');
-      this.timerMode = 'edit'; 
+      this.isTimerRunning = false; 
+      this.timerMode = 'edit';    
     },
     resetTimerStateIfHidden() {
-  if (!this.showTimer) {
-    console.log('[ParentComponent] Resetting timer state (Unchecked).');
-    this.savedTimerName = '';
-    this.timerMode = 'edit';
-  } else {
-    console.log('[ParentComponent] Initializing timer state (Checked).');
-    this.timerMode = 'edit';  
-  }
-}
+      if (!this.showTimer) {
+        console.log('[ParentComponent] Resetting timer state (Unchecked).');
+        this.savedTimerName = '';
+        this.savedTimerDuration = 0; 
+        this.isTimerRunning = false; 
+        this.timerMode = 'edit';
+      } else {
+        console.log('[ParentComponent] Initializing timer state (Checked).');
+        this.isTimerRunning = false;
+        this.timerMode = 'edit';
+      }
+    },
+    handleTimerFinished() {
+      console.log('[ParentComponent] Timer finished!');
+      this.isTimerRunning = false;
+      alert(`${this.savedTimerName} のタイマーが完了しました！`);
+    }
   },
 };
 </script>

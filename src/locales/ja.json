@@ -70,11 +70,15 @@
       "titleEdit": "タイマー設定 (編集モード)",
       "titleDetails": "タイマー表示 (詳細モード)",
       "editPrompt": "タイマーの名前を入力してください。",
+      "remainingTimeLabel": "タイマー",
+      "secondsLabel": "秒",
       "timerNameLabel": "タイマー名",
-      "timerNamePlaceholder": "例: リビングの時計",
+      "timerNamePlaceholder": "例: ⚪︎⚪︎のタイマー",
       "logStart": "タイマーを開始します。",
       "logStop": "タイマーを停止します。",
+      "minutesLabel": "分",
       "logUpdate": "DOMが更新されました。"
+
     },
     "common": {
       "save": "保存",

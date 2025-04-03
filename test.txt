@@ -1,0 +1,21 @@
+diff --git a/src/components/project/Chapter2LifeCycle/TimerDetailsComponent.vue b/src/components/project/Chapter2LifeCycle/TimerDetailsComponent.vue
+index a819263..4d9bb7b 100644
+--- a/src/components/project/Chapter2LifeCycle/TimerDetailsComponent.vue
++++ b/src/components/project/Chapter2LifeCycle/TimerDetailsComponent.vue
+@@ -36,6 +36,7 @@ export default {
+   },
+   methods: {
+     handleEdit() {
++      // 'edit' イベントを親に通知してモード切り替えを依頼
+       this.$emit('edit');
+     },
+     logHook(hookName, message) {
+@@ -55,6 +56,8 @@ export default {
+       this.intervalId = null;
+     }
+   },
++  // このコンポーネントも内部でモード切り替えしないので updated は通常不要
++  // created などの他のフックは必要に応じて追加
+   created() {
+      this.logHook('created', `Component instance created. Timer Name: ${this.timerName}`);
+   }
