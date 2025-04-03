@@ -58,9 +58,28 @@
       "details": "DetailsComponent",
       "created": "🛠 created: コンポーネントが作成されました",
       "mounted": "✅ mounted: コンポーネントがDOMにマウントされました",
+      "timercomponent": "タイマーコンポーネントを表示",
       "updated": "🔁 updated: コンポーネントが更新されました",
       "destroyed": "❌ destroyed: コンポーネントが破棄されました",
       "input": "入力された値{message}"
+    },
+    "timer": {
+      "title": "タイマーコンポーネント",
+      "description": "このコンポーネントが表示されている間、時刻が更新されます。",
+      "currentTimeLabel": "現在の時刻:",
+      "titleEdit": "タイマー設定 (編集モード)",
+      "titleDetails": "タイマー表示 (詳細モード)",
+      "editPrompt": "タイマーの名前を入力してください。",
+      "remainingTimeLabel": "タイマー",
+      "secondsLabel": "秒",
+      "timerNameLabel": "タイマー名",
+      "timerNamePlaceholder": "例: ⚪︎⚪︎のタイマー",
+      "timerFinishedAlert": "{timerName} のタイマーが完了しました！" ,
+      "logStart": "タイマーを開始します。",
+      "logStop": "タイマーを停止します。",
+      "minutesLabel": "分",
+      "logUpdate": "DOMが更新されました。"
+
     },
     "common": {
       "save": "保存",
