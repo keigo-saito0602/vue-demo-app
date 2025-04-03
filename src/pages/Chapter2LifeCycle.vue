@@ -127,9 +127,12 @@ export default {
       }
     },
     handleTimerFinished() {
-      console.log('[ParentComponent] Timer finished!');
-      this.isTimerRunning = false;
-      alert(`${this.savedTimerName} のタイマーが完了しました！`);
+  console.log('[ParentComponent] Timer finished!');
+  this.isTimerRunning = false; 
+  const alertMessage = this.$t('app.timer.timerFinishedAlert', { timerName: this.savedTimerName });
+  alert(alertMessage);
+  this.timerMode = 'edit';
+  console.log('[ParentComponent] Switched to timer edit mode after finish.'); 
     }
   },
 };

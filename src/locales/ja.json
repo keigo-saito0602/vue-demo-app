@@ -74,6 +74,7 @@
       "secondsLabel": "秒",
       "timerNameLabel": "タイマー名",
       "timerNamePlaceholder": "例: ⚪︎⚪︎のタイマー",
+      "timerFinishedAlert": "{timerName} のタイマーが完了しました！" ,
       "logStart": "タイマーを開始します。",
       "logStop": "タイマーを停止します。",
       "minutesLabel": "分",
