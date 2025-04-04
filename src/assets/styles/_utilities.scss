@@ -1,0 +1,71 @@
+// ------------------------------
+// Text utilities
+// ------------------------------
+.text-icon-check {
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.text-footer {
+  font-size: 14px;
+  color: var(--color-gray);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.link-footer {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.font-weight-medium {
+  font-weight: 500;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.v-text-field input {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+// ------------------------------
+// Buttons
+button,
+.v-btn {
+  font-family: inherit;
+  text-transform: none;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+// ------------------------------
+// Layout helpers
+.mt-2 {
+  margin-top: 8px;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+.gap-4 {
+  display: flex;
+  gap: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
