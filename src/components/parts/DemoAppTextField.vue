@@ -6,7 +6,7 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :rules="rules"
-    :error-messages="errorMessages"
+    :error-messages="internalErrors"
     outlined
     dense
     hide-details="auto"
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 
 type ValidationRule = (v: string) => true | string;
 
@@ -28,8 +28,23 @@ export default class DemoAppTextField extends Vue {
   @Prop({ type: Array, default: () => [] }) rules!: ValidationRule[];
   @Prop({ type: Array, default: () => [] }) errorMessages!: string[];
 
+  internalErrors: string[] = [];
+
+  mounted() {
+    this.internalErrors = [...this.errorMessages];
+  }
+
+  @Watch("errorMessages")
+  onErrorMessagesChanged(newVal: string[]) {
+    this.internalErrors = [...newVal];
+  }
+
   handleInput(val: string): void {
     this.$emit("input", val);
+
+    if (val.trim() && this.internalErrors.length > 0) {
+      this.internalErrors = [];
+    }
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="d-flex flex-column gap-4">
     <DemoAppTextField
+      ref="employeeCodeField"
       v-model="inputEmployeeCode"
       :label="$t('app.prop_emit.employee.navigate')"
       :placeholder="$t('app.prop_emit.employee.placeholder')"
@@ -45,6 +46,10 @@ export default class EmployeeCodeInput extends Vue {
   }
 
   submitEmployeeCode(): void {
+    const valid = (this.$refs.employeeCodeField as any).validate?.();
+
+    if (!valid) return;
+
     this.$emit(
       "employee-code-submitted",
       this.inputEmployeeCode,

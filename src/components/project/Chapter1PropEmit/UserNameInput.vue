@@ -1,20 +1,18 @@
 <template>
   <div class="d-flex flex-column gap-4">
-    <!-- 入力フォーム -->
     <DemoAppTextField
+      ref="usernameField"
       v-model="inputUsername"
       :label="$t('app.prop_emit.user.title')"
       :placeholder="$t('app.prop_emit.user.placeholder')"
       :rules="usernameRules"
     />
 
-    <!-- チェックボックス -->
     <DemoAppCheckbox
       v-model="isSubscribed"
       :label="$t('app.prop_emit.user.checkbox.title')"
     />
 
-    <!-- 送信ボタン -->
     <DemoAppButton
       :label="$t('button.submit')"
       :loading="false"
@@ -50,6 +48,8 @@ export default class UserNameInput extends Vue {
   }
 
   submitUsername(): void {
+    const valid = (this.$refs.usernameField as any).validate?.();
+    if (!valid) return;
     this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
   }
 }

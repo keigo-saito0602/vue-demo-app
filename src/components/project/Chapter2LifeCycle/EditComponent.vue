@@ -70,7 +70,6 @@ export default class EditComponent extends Vue {
     return (v: string) => !!v?.trim() || this.$t(messageKey);
   }
 
-  @Emit("save")
   handleSave(): void {
     if (this.isUsed && !this.message.trim()) {
       this.errorMessages = [this.$t("error.empty_username") as string];
@@ -82,6 +81,8 @@ export default class EditComponent extends Vue {
     }
 
     this.errorMessages = [];
+
+    this.$emit("save");
   }
 
   handleCancel(): void {
