@@ -13,7 +13,12 @@
     </div>
 
     <div>
-      
+      <DemoAppCheckbox
+        v-model="isChecked2"
+        label="セット2のチェック"
+        :disabled="mode2 === 'details'"
+        id="my-checkbox-set2"
+      />
       <EditComponent2
         v-if="mode2 === 'edit'"
         :message="message2"
@@ -36,6 +41,7 @@ import EditComponent2 from "./EditComponent2.vue";
 import DetailsComponent2 from "./DetailsComponent2.vue";
 import DemoAppBooleanSwitch from "@/components/parts/DemoAppToggleSwitch.vue";
 import DemoAppButton from "@/components/parts/DemoAppButton.vue";
+import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
 
 @Component({
   components: {
@@ -45,6 +51,7 @@ import DemoAppButton from "@/components/parts/DemoAppButton.vue";
     DetailsComponent2,
     DemoAppBooleanSwitch,
     DemoAppButton,
+    DemoAppCheckbox, 
   },
 })
 export default class IndexComponent extends Vue {
@@ -55,7 +62,8 @@ export default class IndexComponent extends Vue {
 
   mode2: "edit" | "details" = "edit"; // セット2の表示モード (初期値をeditに)
   message2 = "";      // セット2のメッセージ (初期値を設定)
-  isUsed2 = false;                     // セット2のisUsed状態 (初期値を設定)
+  isUsed2 = false;             
+  isChecked2 = true;        // セット2のisUsed状態 (初期値を設定)
 
   switchToDetails(): void {
     this.mode = "details";
