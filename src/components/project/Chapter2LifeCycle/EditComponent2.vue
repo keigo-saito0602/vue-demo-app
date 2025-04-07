@@ -6,46 +6,44 @@
     <p class="text-body-2 mb-4">
       {{ $t("app.lifeCycle.editMessage") }}
     </p>
+<DemoAppBooleanSwitch
+  :value="localIsUsed"
+  @input="localIsUsed = $event"
+  :label-on="$t('app.common.use')"
+  :label-off="$t('app.common.notUse')"
+  class="mb-4"
+/>
 
-    <DemoAppBooleanSwitch
-      :value="isUsed"
-      @input="$emit('update:isUsed', $event)"
-      :label-on="$t('app.common.use')"
-      :label-off="$t('app.common.notUse')"
-      class="mb-4"
-    />
+<DemoAppTextField
+  v-if="localIsUsed"
+  :value="localMessage"
+  :placeholder="$t('app.lifeCycle.inputPlaceholder')"
+  :rules="rules"
+  :error-messages="errorMessages"
+  @input="localMessage = $event"
+  class="mb-2"
+/>
 
-    <DemoAppTextField
-      v-if="isUsed"
-      :value="message"
-      :placeholder="$t('app.lifeCycle.inputPlaceholder')"
-      :rules="rules"
-      :error-messages="errorMessages"
-      @input="$emit('update-message', $event)"
-      class="mb-2"
-    />
+<p v-if="localIsUsed" class="text-body-2 mb-4">
+  {{ $t("app.lifeCycle.inputted") }}: {{ localMessage }}
+</p>
 
-    <p v-if="isUsed" class="text-body-2 mb-4">
-      {{ $t("app.lifeCycle.inputted") }}: {{ message }}
-    </p>
-
-    <div class="d-flex justify-end gap-4 mt-4">
-      <DemoAppButton
-        :label="$t('app.common.cancel')"
-        variant="outline"
-        @click="handleCancel"
-      />
-      <DemoAppButton
-        :label="$t('app.common.save')"
-        color="primary"
-        @click="handleSave"
-      />
-    </div>
+<div class="d-flex justify-end gap-4 mt-4">
+  <DemoAppButton
+    :label="$t('app.common.cancel')"
+    variant="outline"
+    @click="handleCancel"
+  />
+  <DemoAppButton
+    :label="$t('app.common.save')"
+    color="primary"
+    @click="handleSave"
+  />
+</div>
   </div>
 </template>
-
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import DemoAppButton from "@/components/parts/DemoAppButton.vue";
 import DemoAppTextField from "@/components/parts/DemoAppTextField.vue";
 import DemoAppBooleanSwitch from "@/components/parts/DemoAppToggleSwitch.vue";
@@ -60,28 +58,32 @@ import DemoAppBooleanSwitch from "@/components/parts/DemoAppToggleSwitch.vue";
 export default class EditComponent extends Vue {
   @Prop({ default: "" }) message!: string;
   @Prop({ default: false }) isUsed!: boolean;
+
+  localMessage = "";
+  localIsUsed = false;
+
   errorMessages: string[] = [];
 
-  get rules() {
-    return [this.requiredRule("error.empty_username")];
+  created() {
+    this.localMessage = this.message;
+    this.localIsUsed = this.isUsed;
+    this.log("created");
   }
 
-  requiredRule(messageKey: string) {
-    return (v: string) => !!v?.trim() || this.$t(messageKey);
+  get rules() {
+    return [(v: string) => !!v?.trim() || this.$t("error.empty_username")];
   }
+
 
   handleSave(): void {
-    if (this.isUsed && !this.message.trim()) {
+    if (this.localIsUsed && !this.localMessage.trim()) {
       this.errorMessages = [this.$t("error.empty_username") as string];
       return;
     }
-
-    if (!this.isUsed) {
-      this.$emit("update-message", "");
-    }
-
     this.errorMessages = [];
 
+    this.$emit("update:isUsed", this.localIsUsed);
+    this.$emit("update-message", this.localIsUsed ? this.localMessage : "");
     this.$emit("save");
   }
 
@@ -89,9 +91,6 @@ export default class EditComponent extends Vue {
     this.$emit("cancel");
   }
 
-  created() {
-    this.log("created");
-  }
   mounted() {
     this.log("mounted");
   }
@@ -105,7 +104,7 @@ export default class EditComponent extends Vue {
   log(lifecycle: string) {
     console.log(this.$t("app.lifeCycle.edit"));
     console.log(this.$t(`app.lifeCycle.${lifecycle}`));
-    console.log(this.$t("app.lifeCycle.input", { message: this.message }));
+    console.log(this.$t("app.lifeCycle.input", { message: this.localMessage }));
   }
 }
 </script>

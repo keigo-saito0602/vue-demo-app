@@ -60,10 +60,10 @@ export default class IndexComponent extends Vue {
   message = "";
   isUsed = false;
 
-  mode2: "edit" | "details" = "edit"; // セット2の表示モード (初期値をeditに)
-  message2 = "";      // セット2のメッセージ (初期値を設定)
+  mode2: "edit" | "details" = "edit";
+  message2 = "";     
   isUsed2 = false;             
-  isChecked2 = true;        // セット2のisUsed状態 (初期値を設定)
+  isChecked2 = true;
 
   switchToDetails(): void {
     this.mode = "details";
@@ -77,17 +77,17 @@ export default class IndexComponent extends Vue {
     this.message = newMessage;
   }
   switchToDetails2(): void {
-    console.log("switchToDetails2 called"); // デバッグ用ログ
+    console.log("switchToDetails2 called");
     this.mode2 = "details";
   }
 
   switchToEdit2(): void {
-    console.log("switchToEdit2 called"); // デバッグ用ログ
+    console.log("switchToEdit2 called");
     this.mode2 = "edit";
   }
 
   updateMessage2(newMessage: string): void {
-    console.log("updateMessage2 called with:", newMessage); // デバッグ用ログ
+    console.log("updateMessage2 called with:", newMessage);
     this.message2 = newMessage;
   }
 }
