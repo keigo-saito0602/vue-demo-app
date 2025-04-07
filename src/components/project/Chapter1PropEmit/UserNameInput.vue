@@ -1,11 +1,11 @@
 <template>
-  <div class="form-group">
-    <label for="username">{{ $t("app.prop_emit.user.title") }}</label>
-    <input
-      class="form-input"
-      type="text"
-      id="username"
+  <div class="d-flex flex-column gap-4">
+    <DemoAppTextField
+      ref="usernameField"
       v-model="inputUsername"
+      :label="$t('app.prop_emit.user.title')"
+      :placeholder="$t('app.prop_emit.user.placeholder')"
+      :rules="usernameRules"
     />
 
     <DemoAppCheckbox
@@ -13,67 +13,44 @@
       :label="$t('app.prop_emit.user.checkbox.title')"
     />
 
-    <DemoAppButton @click="submitUsername" :label="$t('button.submit')" />
-
-    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <DemoAppButton
+      :label="$t('button.submit')"
+      :loading="false"
+      @click="submitUsername"
+    />
   </div>
 </template>
 
-<script>
-import { Component, Vue } from "vue-property-decorator";
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
 import DemoAppButton from "@/components/parts/DemoAppButton.vue";
 import DemoAppCheckbox from "@/components/parts/DemoAppCheckbox.vue";
+import DemoAppTextField from "@/components/parts/DemoAppTextField.vue";
+import { requiredRule, maxLengthRule } from "@/utils/validationRules";
 
 @Component({
   name: "UserNameInput",
   components: {
     DemoAppButton,
     DemoAppCheckbox,
+    DemoAppTextField,
   },
 })
 export default class UserNameInput extends Vue {
   inputUsername = "";
   isSubscribed = false;
-  errorMessage = "";
 
-  submitUsername() {
-    if (this.inputUsername.trim() === "") {
-      this.errorMessage = this.$t("error.empty_username");
-      return;
-    }
-
-    this.errorMessage = "";
-    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
+  get usernameRules() {
+    return [
+      requiredRule("error.empty_username"),
+      maxLengthRule(20, "error.max_length"),
+    ];
   }
 
-  updateSubscription(value) {
-    this.isSubscribed = value;
-    this.$emit("update:isSubscribed", value);
+  submitUsername(): void {
+    const valid = (this.$refs.usernameField as any).validate?.();
+    if (!valid) return;
+    this.$emit("username-submitted", this.inputUsername, this.isSubscribed);
   }
 }
 </script>
-
-<style scoped>
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 160px;
-}
-
-.form-input {
-  padding: 10px 14px;
-  font-size: 16px;
-  border: 1px solid var(--vue-green);
-  border-radius: 8px;
-}
-
-.checkbox-group {
-  margin-top: 8px;
-}
-
-.error-message {
-  color: var(--error);
-  font-size: 14px;
-}
-</style>

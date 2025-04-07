@@ -1,68 +1,50 @@
 <template>
-  <label class="text-field-wrapper">
-    <span class="text-field-label" v-if="label">{{ label }}</span>
-    <input
-      type="text"
-      :value="value"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      @input="$emit('input', $event.target.value)"
-    />
-  </label>
+  <v-text-field
+    color="primary"
+    :value="value"
+    :label="label"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :rules="rules"
+    :error-messages="internalErrors"
+    outlined
+    dense
+    hide-details="auto"
+    @input="handleInput"
+  />
 </template>
 
-<script>
-export default {
-  name: "DemoAppTextField",
-  props: {
-    value: {
-      type: String,
-      required: true,
-    },
-    label: {
-      type: String,
-      default: "",
-    },
-    placeholder: {
-      type: String,
-      default: "",
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-  },
-};
+<script lang="ts">
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+
+type ValidationRule = (v: string) => true | string;
+
+@Component
+export default class DemoAppTextField extends Vue {
+  @Prop({ required: true }) value!: string;
+  @Prop({ default: "" }) label!: string;
+  @Prop({ default: "" }) placeholder!: string;
+  @Prop({ default: false }) disabled!: boolean;
+  @Prop({ type: Array, default: () => [] }) rules!: ValidationRule[];
+  @Prop({ type: Array, default: () => [] }) errorMessages!: string[];
+
+  internalErrors: string[] = [];
+
+  mounted() {
+    this.internalErrors = [...this.errorMessages];
+  }
+
+  @Watch("errorMessages")
+  onErrorMessagesChanged(newVal: string[]) {
+    this.internalErrors = [...newVal];
+  }
+
+  handleInput(val: string): void {
+    this.$emit("input", val);
+
+    if (val.trim() && this.internalErrors.length > 0) {
+      this.internalErrors = [];
+    }
+  }
+}
 </script>
-
-<style scoped>
-.text-field-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-weight: 500;
-}
-
-.text-field-label {
-  font-size: 14px;
-  color: var(--vue-dark);
-}
-
-.text-field-wrapper input[type="text"] {
-  padding: 8px 12px;
-  border: 1px solid var(--vue-light-bg);
-  border-radius: 6px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.text-field-wrapper input[type="text"]:focus {
-  border-color: var(--vue-green);
-}
-
-.text-field-wrapper input[type="text"]:disabled {
-  background-color: #f3f4f6;
-  cursor: not-allowed;
-}
-</style>

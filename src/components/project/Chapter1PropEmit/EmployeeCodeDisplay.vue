@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <p v-if="employeeCode">
-      {{ $t("app.prop_emit.employee.employee_code", { employeeCode }) }}
-    </p>
-    <DemoAppCheckboxDisplay
-      :isChecked="isSubscribed"
-      :checkedText="$t('app.prop_emit.employee.checkbox.check')"
-      :uncheckedText="$t('app.prop_emit.employee.checkbox.checknull')"
-    />
+  <div class="d-flex flex-column gap-2">
+    <div class="mt-4">
+      <p v-if="employeeCode" class="text-body-2 text-primary">
+        {{ $t("app.prop_emit.employee.employee_code", { employeeCode }) }}
+      </p>
+      <DemoAppCheckboxDisplay
+        :isChecked="isSubscribed"
+        :checkedText="$t('app.prop_emit.employee.checkbox.check')"
+        :uncheckedText="$t('app.prop_emit.employee.checkbox.checknull')"
+      />
+    </div>
   </div>
 </template>
 
-<script>
-import { Component, Prop, Vue } from "vue-property-decorator";
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
 import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue";
 
 @Component({
@@ -22,16 +24,7 @@ import DemoAppCheckboxDisplay from "@/components/parts/DemoAppBooleanDisplay.vue
   },
 })
 export default class EmployeeCodeDisplay extends Vue {
-  @Prop(String) employeeCode;
-  @Prop(Boolean) isSubscribed;
+  @Prop({ type: String, default: "" }) employeeCode!: string;
+  @Prop({ type: Boolean, default: false }) isSubscribed!: boolean;
 }
 </script>
-
-<style scoped>
-.greeting {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--vue-green);
-  margin-top: 20px;
-}
-</style>
